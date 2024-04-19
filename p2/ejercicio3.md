@@ -1,6 +1,6 @@
-<span style="font-family: 'Comic Sans MS', cursive;">
+<font face="LaTeX">
 
-# ∀ xs::[a] . ∀ ys::[a] . length (append xs ys) = length xs + length ys
+## <font face="LaTeX"> ∀ xs::[a] . ∀ ys::[a] . length (append xs ys) = length xs + length ys </font>
 
 ## Demostración
 
@@ -35,4 +35,4 @@ length (x:append xs ys) = length (x:xs) + length ys
 --vale por hipótesis inductiva
 ```
 
-</span>
+</font>
