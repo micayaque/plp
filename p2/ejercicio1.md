@@ -35,11 +35,6 @@ Si e :: Either a b, entonces:
     o bien ∃x :: a. e = Left x
     o bien ∃y :: b. e = Right b
 ```
-## <u>Extensionalidad para pares</u>
-
-```haskell
-Si p::(a, b), entonces ∃x::a. ∃y::b. p = (x,y).
-```
 ---
 
 ```haskell

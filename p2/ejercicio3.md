@@ -1,6 +1,6 @@
 <font face="LaTeX">
 
-## <font face="LaTeX"> ∀ xs::[a] . ∀ ys::[a] . length (append xs ys) = length xs + length ys </font>
+## ∀ xs::[a] . ∀ ys::[a] . length (append xs ys) = length xs + length ys 
 
 ## Demostración
 
