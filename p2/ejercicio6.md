@@ -35,6 +35,8 @@ vi.  Eq a => ∀ xs::[a] . ∀ ys::[a] . length (union xs ys) ≤ length xs + le
 
 ### i. Eq a => ∀ xs::[a] . ∀ e::a . ∀ p::a -> Bool . elem e xs && p e = elem e (filter p xs)
 
+Podemos demostrarlo usando el principio de inducción sobre la estructura de la lista `xs`.
+
 
 
 ---
@@ -164,21 +166,33 @@ TI: P((x:xs)) = `elem e (intersect (x:xs) ys) = (elem e (x:xs)) && (elem e ys)`
 
 Por la definición de elem:
 ```haskell
-elem e (intersect (x:xs) ys)         = elem e (x:xs) && elem e ys
-elem e (x : intersect xs ys)         = (e == x  || elem e xs) && elem e ys
-(e == x) || elem e (intersect xs ys) = (e == x) || elem e xs  && elem e ys
+elem e (intersect (x:xs) ys) = elem e (x:xs) && elem e ys
+```
+* Si x está en ys y xs, es decir, en la intersección, entonces por la definición de intersect y filter:
+```haskell
+elem e ( x : intersect xs ys) = (e == x || elem e xs) && elem e ys
+e == x || elem e (intersect xs ys) = (e == x) || elem e xs && elem e ys
 ```
 
 * Si `e==x` entonces trivialmente ya se cumple la propiedad porque nos queda `True == True`
+
 * Si `e!=x` entonces nos queda:
+
+
 ```haskell
 elem e (intersect xs ys) = elem e xs && elem e ys
 ``` 
 y por `HI` se cumple la propiedad.
 
+* Si e no está en la intersección, entonces por la definición de intersect y filter:
+```haskell
+elem e (intersect xs ys) = elem e xs && elem e ys
+```
+Y esto es verdadero por `HI`.
+
 ---
 
-### iv. Eq a => ∀ xs::[a] . ∀ ys::[a] . length (union xs ys) = length xs + length ys
+### v. Eq a => ∀ xs::[a] . ∀ ys::[a] . length (union xs ys) = length xs + length ys
 
 Podemos probarlo por el principio de inducción sobre la estructura de la lista `xs`.
 
@@ -241,7 +255,7 @@ por lo que se cumple la propiedad por HI.
 
 ---
 
-### v. Eq a => ∀ xs::[a] . ∀ ys::[a] . length (union xs ys) ≤ length xs + length ys
+### vi. Eq a => ∀ xs::[a] . ∀ ys::[a] . length (union xs ys) ≤ length xs + length ys
 
 Podemos probarlo por el principio de inducción sobre la estructura de la lista `xs`.
 
