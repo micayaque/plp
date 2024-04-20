@@ -209,4 +209,84 @@ True         ⇒ (True ∨ elem e xs = True)
 
 ---
 
+- ## v. ∀ xs::[a] ∀ x::a length (ponerAlFinal x xs) = 1 + length xs
+
+### Podemos demostrarlo usando el principio de inducción sobre listas.
+
+### <u>Caso base</u>: `xs = []`
+
+```hs
+length (ponerAlFinal x []) = 1 + length []
+--por P0 y foldr 
+--ponerAlFinal x [] = (f x [] = [x])
+length [x] = 1 + length []
+1 + length [] = 1 + 0
+1 + 0 = 1
+1 = 1
+```
+
+### Y por lo tanto vale el caso base
+
+---
+
+### <u>Caso inductivo</u>: P(xs) ⇒ P(x:xs)
+
+### P(xs) = length (ponerAlFinal x xs) = 1 + length xs
+
+### P(x:xs) = length (ponerAlFinal x (x:xs)) = 1 + length (x:xs)
+
+```hs
+length (ponerAlFinal x (x:xs)) = 1 + length (x:xs)
+--por P0 y foldr
+length (ponerAlFinal x (x:xs)) = length (x:xs) + 1
+1 + length(ponerAlFinal x (xs)) = 1 + 1 + length xs
+length (ponerAlFinal x (xs)) = 1 + length xs
+--vale por hipótesis inductiva
+```
+
+### Y por lo tanto vale el caso inductivo
+
+---
+
+- ## vi. ∀ xs::[a] ∀ x::a head (reverse (ponerAlFinal x xs)) = x
+
+### Podemos demostrarlo usando el principio de inducción sobre listas.
+
+### <u>Caso base</u>: `xs = []`
+
+```hs
+head (reverse (ponerAlFinal x [])) = x
+--por P0 y foldr
+head (reverse (f x [])) = x
+head (reverse [x]) = x
+head [x] = x
+x = x
+```
+
+### Y por lo tanto vale el caso base
+
+---
+
+### <u>Caso inductivo</u>: P(xs) ⇒ P(x:xs)
+
+### P(xs) = head (reverse (ponerAlFinal x xs)) = x
+
+### P(x:xs) = head (reverse (ponerAlFinal x (x:xs))) = x
+
+```hs
+head (reverse (ponerAlFinal x (x:xs))) = x
+--poner al final pone x al final de la lista y reverse tiene como primer elemento al último de la lista
+--por lo que el head de la lista invertida es x
+--por {R0} reverse = foldl (flip (:)) []
+--por {P0} ponerAlFinal x = foldr (:) (x:[])
+head(reverse(x' : ponerAlFinal x xs)) = x
+head(foldl ponerAlFinal x xs ++ [x']) = x
+head(x : foldl ponerAlFinal x'' xs ++ [x]) = x
+head(x:resto) = x
+x = x
+True
+```
+
+### Y por lo tanto vale el caso inductivo
+
 </font>
