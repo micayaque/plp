@@ -164,14 +164,15 @@ HI: P(xs) = `elem e (intersect xs ys) = (elem e xs) && (elem e ys)`
 
 TI: P((x:xs)) = `elem e (intersect (x:xs) ys) = (elem e (x:xs)) && (elem e ys)`
 
-Por la definición de elem:
+Por la {I0}:
 ```haskell
 elem e (intersect (x:xs) ys) = elem e (x:xs) && elem e ys
+elem e (filter (\e -> elem e ys) (x:xs)) = elem e (x:xs) && elem e ys
 ```
 * Si x está en ys y xs, es decir, en la intersección, entonces por la definición de intersect y filter:
 ```haskell
-elem e ( x : intersect xs ys) = (e == x || elem e xs) && elem e ys
-e == x || elem e (intersect xs ys) = (e == x) || elem e xs && elem e ys
+elem e ( x : filter (\e -> elem e ys) xs) = (e==x || elem e xs) && elem e ys
+e==x || elem e (intersect xs ys) = (e == x) || elem e xs && elem e ys
 ```
 
 * Si `e==x` entonces trivialmente ya se cumple la propiedad porque nos queda `True == True`
