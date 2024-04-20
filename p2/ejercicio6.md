@@ -5,7 +5,7 @@
 ```haskell
 nub :: Eq a => [a] -> [a]
 {N0} nub [] = []
-{N1} nub (x:xs) = x : nub (filter (\y -> x /= y) xs)
+{N1} nub (x:xs) = x : filter (\y -> x /= y) (nub xs)
 
 union :: Eq a => [a] -> [a] -> [a]
 {U0} union xs ys = nub (xs++ys)
@@ -18,33 +18,41 @@ intersect :: Eq a => [a] -> [a] -> [a]
 son falsas, presentar un contraejemplo.*</strong>
 
 ```LaTex
-i.  Eq a => ∀ xs::[a] . ∀ e::a    . elem e xs = elem e (nub xs) True
-ii. Eq a => ∀ xs::[a] . ∀ ys::[a] . ∀ e::a . elem e (union xs ys) = (elem e xs) || (elem e ys)
-iii.Eq a => ∀ xs::[a] . ∀ ys::[a] . ∀ e::a . elem e (intersect xs ys) = (elem e xs) && (elem e
-iv. Eq a => ∀ xs::[a] . ∀ ys::[a] . length (union xs ys) = length xs + length ys ys)
-v.  Eq a => ∀ xs::[a] . ∀ ys::[a] . length (union xs ys) ≤ length xs + length ys
+i. Eq a => ∀ xs::[a] . ∀ e::a . ∀ p::a -> Bool . elem e xs && p e = elem e (filter p xs)
+
+ii.  Eq a => ∀ xs::[a] . ∀ e::a    . elem e xs = elem e (nub xs)
+
+iii. Eq a => ∀ xs::[a] . ∀ ys::[a] . ∀ e::a . elem e (union xs ys) = (elem e xs) || (elem e ys)
+
+iv.Eq a => ∀ xs::[a] . ∀ ys::[a] . ∀ e::a . elem e (intersect xs ys) = (elem e xs) && (elem e
+
+v. Eq a => ∀ xs::[a] . ∀ ys::[a] . length (union xs ys) = length xs + length ys ys)
+
+vi.  Eq a => ∀ xs::[a] . ∀ ys::[a] . length (union xs ys) ≤ length xs + length ys
 ```
 
 ---
 
+### i. Eq a => ∀ xs::[a] . ∀ e::a . ∀ p::a -> Bool . elem e xs && p e = elem e (filter p xs)
 
-### i. Eq a => ∀ xs::[a] . ∀ e::a    . elem e xs = elem e (nub xs) 
 
-Por el principio de inducción estructural sobre la estructura de la lista `xs`.
 
 ---
+### ii. Eq a => ∀ xs::[a] . ∀ e::a . elem e xs = elem e (nub xs)
 
+La propiedad es verdadera. Se puede demostrar por el principio de inducción estructural sobre la estructura de la lista `xs`.
+
+---
 
 <u>Caso base</u>: `xs = []`
-```haskell
-elem e [] = False = elem e (nub []) = elem e []
-```
-Por {N0} `nub [] = []`, entonces `elem e [] = elem e []`.
 
 ```haskell
-elem e [] = elem e (nub []) =
+elem e [] = elem e (nub []) = elem e []
+```
+Por definición de nub:
+```haskell
 False = elem e []
-False = False
+False = False    
 True
 ```
 
@@ -60,27 +68,17 @@ Por {N1} `nub (x:xs) = x : nub (filter (\y -> x /= y) xs)`, entonces:
 
 ```haskell
 elem e (x:xs)       = elem e (nub (x:xs))
+e == x || elem e xs = elem e (x : nub (filter (\y -> x /= y) xs))
+e == x || elem e xs = elem e (x : nub xs)
 e == x || elem e xs = e == x || elem e (nub xs)
 ```
-
-Si e == x entonces,
-
-```haskell
-True || elem e xs = True || elem e (nub xs)
-True = True
-True
-```
-
-Si e != x entonces,
-
-```haskell
-elem e xs = elem e (nub xs)
-```
-Es verdadero por HI. Por lo tanto, la propiedad es verdadera.
+* Si e == x entonces `True = True` y la propiedad es trivialmente verdadera.
+* Si e != x entonces `elem e xs = elem e (nub xs)` y por HI se cumple la propiedad.
 
 ---
 
-### ii. Eq a => ∀ xs::[a] . ∀ ys::[a] . ∀ e::a . elem e (union xs ys) = (elem e xs) || (elem e ys)
+
+### iii. Eq a => ∀ xs::[a] . ∀ ys::[a] . ∀ e::a . elem e (union xs ys) = (elem e xs) || (elem e ys)
 
 La propiedad es verdadera. Se puede demostrar por el principio de inducción estructural sobre la estructura de la lista `xs`.
 
@@ -132,30 +130,29 @@ Es verdadero por HI. Por lo tanto, la propiedad es verdadera.
 
 ---
 
-### iii. Eq a => ∀ xs::[a] . ∀ ys::[a] . ∀ e::a . elem e (intersect xs ys) = (elem e xs) && (elem e ys)
+### iv. Eq a => ∀ xs::[a] . ∀ ys::[a] . ∀ e::a . elem e (intersect xs ys) = (elem e xs) && (elem e ys)
 
-Podemos probarlo usando el principio de inducción sobre listas en `xs` y la extensionalidad de las funciones.
+Podemos probarlo usando el principio de inducción sobre listas en `xs`.
 
 ---
 
 <u>Caso base</u>: `xs = []`
-
 ```haskell
 elem e (intersect [] ys) = (elem e []) && (elem e ys)
 elem e (intersect [] ys) = False && elem e ys
 ```
-Como la conjunción necesita que sus dos términos sean verdaderos, entonces va a quedar falsa.
-Por lo que necesitamos que
 
-`elem e (intersect [] ys) == False`
-
-Por {I0}:
+Por extencionalidad funcional y por `{I0}: intersect xs ys = filter (\e -> elem e ys) xs`
 
 ```haskell
-elem e (filter (\e -> elem e ys) []) == False
+elem e (filter (\e -> elem e ys) []) = False
 ```
-
-Entonces elem e ys == False porque para que esté en la intersección debe estar en ambas listas y xs es la lista vacía así que no tiene ningún elemento.
+Por la definición de filter, si la lista es vacía entonces el resultado es la lista vacía.
+```haskell
+elem e [] = False
+False = False
+True
+```
 
 ---
 
@@ -165,14 +162,19 @@ HI: P(xs) = `elem e (intersect xs ys) = (elem e xs) && (elem e ys)`
 
 TI: P((x:xs)) = `elem e (intersect (x:xs) ys) = (elem e (x:xs)) && (elem e ys)`
 
+Por la definición de elem:
 ```haskell
-elem e (intersect (x:xs) ys) = elem e (x:xs) && elem e ys
-elem e (x : intersect xs ys) = (e == x || elem e xs) && elem e ys
-(e == x) || elem e (intersect xs ys) = (e == x) || elem e xs && elem e ys
+elem e (intersect (x:xs) ys)         = elem e (x:xs) && elem e ys
+elem e (x : intersect xs ys)         = (e == x  || elem e xs) && elem e ys
+(e == x) || elem e (intersect xs ys) = (e == x) || elem e xs  && elem e ys
 ```
 
-* Si `e==x` entonces ya se cumple la propiedad porque nos queda `True == True`
-* Si `e!=x` entonces nos queda `elem e (intersect xs ys) = elem e xs && elem e ys` y por `HI` se cumple la propiedad.
+* Si `e==x` entonces trivialmente ya se cumple la propiedad porque nos queda `True == True`
+* Si `e!=x` entonces nos queda:
+```haskell
+elem e (intersect xs ys) = elem e xs && elem e ys
+``` 
+y por `HI` se cumple la propiedad.
 
 ---
 
