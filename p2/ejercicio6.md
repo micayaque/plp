@@ -91,15 +91,21 @@ La propiedad es verdadera. Se puede demostrar por el principio de inducción est
 ```haskell
 elem e (union [] ys) = (elem e []) || (elem e ys)
 ```
-Por {U0} `union [] ys = nub ([]++ys) = nub ys`, entonces:
+Por `{U0} union xs ys = nub (xs++ys)`, entonces:
 
 ```haskell
-elem e (nub ys) = (elem e []) || (elem e ys)
-elem e (nub ys) = False || elem e ys
-elem e (nub ys) = elem e ys
+elem e (nub [] ++ ys) = (elem e []) || (elem e ys)
+elem e (nub [] ++ ys) = False || elem e ys
+elem e (nub [] ++ ys) = elem e ys
 ```
 
-Por definición de nub si elem e ys es verdadero entonces elem e (nub ys) también lo es.
+Por definición de `++` y `nub`:
+```haskell
+elem e (nub ys) = elem e ys
+```
+Por `{N1} nub (x:xs) = x : nub (filter (\y -> x /= y) xs)` sabemos que nub ys elimina los repetidos de la lista ys manteniendo todos los elementos de ys pero con una sola aparición de cada uno.
+
+Por lo tanto, si e está en (nub ys) entonces también va a estar en la lista original ys y la propiedad es verdadera en el caso base.
 
 ---
 
@@ -107,24 +113,39 @@ Por definición de nub si elem e ys es verdadero entonces elem e (nub ys) tambi�
 
 HI: P(xs) = `elem e (union xs ys) = (elem e xs) || (elem e ys)`
 
+---
+
 TI: P((x:xs)) = `elem e (union (x:xs) ys) = (elem e (x:xs)) || (elem e ys)`
 
-Por {U0} `union (x:xs) ys = nub ((x:xs)++ys) = nub (x:(xs++ys))`, entonces:
+---
+
 
 ```haskell
 elem e (union (x:xs) ys) = (elem e (x:xs)) || (elem e ys)
-elem e (x : union xs ys) = (e == x) || (elem e xs) || (elem e ys)
-e == x || elem e (union xs ys) = (e == x) || elem e xs || elem e ys
 ```
-Si e == x entonces,
-
+Por `{U0} union xs ys = nub (xs++ys)` 
+```haskell
+elem e (nub (x:xs)++ys)) = (elem e (x:xs)) || (elem e ys)
+```
+Por definición de `++`:
+```haskell
+elem e (nub (x:xs++ys)) = (elem e (x:xs)) || (elem e ys)
+```
+Por `{N1} nub (x:xs) = x : filter (\y -> x /= y) (nub xs)`:
+```haskell
+elem e (x : filter (\y -> x /= y) (nub xs++ys)) = (elem e (x:xs)) || (elem e ys)
+```
+Por `{U0} union xs ys = nub (xs++ys)`:
+```haskell
+elem e (x : union xs ys) = (elem e (x:xs)) || (elem e ys)
+e == x || elem e (union xs ys) = e == x || elem e xs || elem e ys
+```
+* Si e == x entonces:
 ```haskell
 True = True
 True
 ```
-
-Si e != x entonces,
-
+* Si e != x entonces:
 ```haskell
 elem e (union xs ys) = elem e xs || elem e ys
 ```
