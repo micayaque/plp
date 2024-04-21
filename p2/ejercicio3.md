@@ -334,18 +334,51 @@ Y por lo tanto vale el caso base.
 
 ```hs
 head (reverse (ponerAlFinal x (x:xs))) = x
---poner al final pone x al final de la lista y reverse tiene como primer elemento al último de la lista
---por lo que el head de la lista invertida es x
---por {R0} reverse = foldl (flip (:)) []
---por {P0} ponerAlFinal x = foldr (:) (x:[])
-head(reverse(x' : ponerAlFinal x xs)) = x
-head(foldl ponerAlFinal x xs ++ [x']) = x
-head(x : foldl ponerAlFinal x'' xs ++ [x]) = x
-head(x:resto) = x
+```
+Por `{P0} ponerAlFinal x = foldr (:) (x:[])`
+```hs
+head (reverse (foldr (:) (x:[]) (x:xs))) = x
+```
+Por la definición de `foldr`, `foldr f z (x:xs) = f x (foldr f z xs)`
+```hs
+head (reverse (x : foldr (:) (x:[]) xs)) = x
+```
+Por `{P0} ponerAlFinal x = foldr (:) (x:[])`
+```hs
+head (reverse (x : ponerAlFinal x xs)) = x
+```
+Por `{R0} reverse = foldl (flip (:)) []`
+```hs
+head (foldl (flip (:)) [] (x : ponerAlFinal x xs)) = x
+```
+Por la definición de `foldl`, `foldl f z (x:xs) = foldl f (f z x) xs`
+```hs
+head (foldl (flip (:)) (flip (:) [] x) (ponerAlFinal x xs)) = x
+```
+Por la definición de `flip`, `flip f x y = f y x`
+```hs
+head (foldl (flip (:)) (x:) (ponerAlFinal x xs)) = x
+```
+Por la definición de `foldl`, `foldl f z (x:xs) = foldl f (f z x) xs`
+```hs
+Por `{R0} reverse = foldl (flip (:)) []`
+```hs
+head (reverse (ponerAlFinal x xs) ++ [x]) = x
+```
+Por la definición de `(++)`, `xs ++ ys = foldr (:) ys xs`
+```hs
+head (foldr (:) [x] (reverse (ponerAlFinal x xs))) = x
+```
+Por la definición de `foldr`, `foldr f z [] = z`
+```hs
+head (x : reverse (ponerAlFinal x xs)) = x
+```
+Por la definición de `head`, `head (x:xs) = x`
+```hs
 x = x
 True
 ```
+Y por lo tanto vale el caso inductivo.
 
-### Y por lo tanto vale el caso inductivo
 
 </font>
