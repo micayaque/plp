@@ -27,7 +27,7 @@ reverse :: [a] -> [a]
 
 ### *Demostrar las siguientes propiedades:*
 
-```haskell
+```LaTeX
 i.   ∀ xs::[a] . length (duplicar xs) = 2 * length xs
 ii.  ∀ xs::[a] . ∀ ys::[a] . length (append xs ys) = length xs + length ys
 iii. ∀ xs::[a] . ∀ f::(a->b) . length (map f xs) = length xs
@@ -58,12 +58,18 @@ Podemos demostrarlo usando el principio de inducción sobre listas.
 
 ```hs
 length (duplicar []) = 2 * length []
---por D1
+```
+Por `{D0} duplicar [] = []`
+```hs
 length [] = 2 * length []
+```
+Por `{L0} length [] = 0`
+```hs
 0 = 2 * 0
 0 = 0
+True
 ```
-### Y por lo tanto vale el caso base
+Y por lo tanto vale el caso base.
 
 ### <u>Caso inductivo</u>: P(xs) ⇒ P(x:xs)
 ### P(xs) = length (duplicar xs) = 2 * length xs
@@ -71,15 +77,19 @@ length [] = 2 * length []
 
 ```hs
 length (duplicar (x:xs)) = 2 * length (x:xs)
---por D2
+```
+Por `{D1} duplicar (x:xs) = x : x : duplicar xs`
+```hs
 length (x:x:duplicar xs) = 2 * length (x:xs)
---por L2
+```
+Por `{L1} length (x:xs) = 1 + length xs`
+```hs
 1 + length (x:duplicar xs) = 2 * (1 + length xs)
 1 + 1 + length (duplicar xs) = 2 + 2 * length xs
 2 + length (duplicar xs) = 2 + 2 * length xs
 length (duplicar xs) = 2 * length xs
---vale por hipótesis inductiva
 ```
+Y por lo tanto vale el caso inductivo.
 
 ---
 
