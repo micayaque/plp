@@ -74,7 +74,7 @@ i. `Num a=>∀p::(Polinomio a) ∀q::(Polinomio a) ∀r::a (esRaiz r p) ⇒ (esR
 
     Si `evaluar r X == 0` es `False`, entonces la implicación vale trivialmente.
 
-    Por lo tanto vale el caso base `p = X`, `q = X`.
+    Por lo tanto vale el caso base `p = X`.
 
 ---
 * `p = Cte k`
@@ -94,7 +94,7 @@ i. `Num a=>∀p::(Polinomio a) ∀q::(Polinomio a) ∀r::a (esRaiz r p) ⇒ (esR
 
     Si `evaluar r (Cte k) == 0` es False, entonces la implicación vale trivialmente.
 
-    Por lo tanto vale el caso base `p = Cte k`, `q = X`.
+    Por lo tanto vale el caso base `p = Cte k`.
 
 <u>*Hipótesis inductiva:*</u>
 
