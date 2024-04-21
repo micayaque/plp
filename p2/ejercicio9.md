@@ -20,29 +20,18 @@ cantNodos = foldAEB (const 1) (\ri _ rd -> 1 + ri + rd)
 
 ---
 
-*Inducción estructural*
+*Principio de inducción sobre árboles binarios*
 ---
-<strong>*En el caso general, tenemos un tipo de datos inductivo:* </strong>
-
-```LaTeX
-data T = CBase1 hparámetrosi
-...
-| CBasen hparámetrosi
-| CRecursivo1 hparámetrosi
-...
-| CRecursivom hparámetrosi
+```hs
+data AB a = Nil | Bin (AB a) a (AB a)
 ```
-*Principio de inducción estructural*
----
-<strong>*Sea P una propiedad acerca de las expresiones tipo T tal que:*
-* *P vale sobre todos los constructores base de T,*
-* *P vale sobre todos los constructores recursivos de T,
-asumiendo como hipótesis inductiva que vale para los
-parámetros de tipo T,*
+<strong>*Sea P una propiedad sobre expresiones de tipo AB a tal que:*
+* *`P(Nil)`*
+* *∀i :: AB a. ∀r :: a. ∀d :: AB a.*
 
-*entonces ∀x :: T. P(x).* </strong>
+*`((P(i) ∧ P(d)) (HI) ⇒ P(Bin i r d)) (TI)`*
 
----
+*Entonces ∀x :: AB a. P(x).* </strong>
 
 <strong>Para demostrar la propiedad, se utilizará inducción estructural sobre el árbol binario x.</strong>
 
