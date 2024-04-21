@@ -39,10 +39,10 @@ data Poli a = X
 ```
 
 <strong>*Sea P una propiedad sobre expresiones de tipo Poli a tal que:*
-* *`P(X)`*
-* *∀k :: a. `P(Cte k)`*
-* *∀p :: Poli a. ∀q :: Poli a. `((P(p) ∧ P(q)) (HI) ⇒ P(Suma p q)) (TI) `*
-* *∀p :: Poli a. ∀q :: Poli a. `((P(p) ∧ P(q)) (HI) ⇒ P(Prod p q)) (TI) `*
+1.  *`P(X)`*
+2.  *∀k :: a. `P(Cte k)`*
+3.  *∀p :: Poli a. ∀q :: Poli a. `((P(p) ∧ P(q)) (HI) ⇒ P(Suma p q)) (TI) `*
+4.  *∀p :: Poli a. ∀q :: Poli a. `((P(p) ∧ P(q)) (HI) ⇒ P(Prod p q)) (TI) `*
 
 *Entonces ∀x :: Poli a. P(x).* </strong>
 
@@ -57,7 +57,7 @@ i. `Num a=>∀p::(Polinomio a) ∀q::(Polinomio a) ∀r::a (esRaiz r p) ⇒ (esR
 
 <u>*Casos base:*</u>
 
-* `p = X`
+1.  `p = X`
 
     ```hs
     esRaiz r X ⇒ esRaiz r (Prod X q)
@@ -77,7 +77,7 @@ i. `Num a=>∀p::(Polinomio a) ∀q::(Polinomio a) ∀r::a (esRaiz r p) ⇒ (esR
     Por lo tanto vale el caso base `p = X`.
 
 ---
-* `p = Cte k`
+2.  `p = Cte k`
 
     ```hs
     esRaiz r (Cte k) ⇒ esRaiz r (Prod (Cte k) q)
@@ -96,21 +96,95 @@ i. `Num a=>∀p::(Polinomio a) ∀q::(Polinomio a) ∀r::a (esRaiz r p) ⇒ (esR
 
     Por lo tanto vale el caso base `p = Cte k`.
 
-<u>*Hipótesis inductiva:*</u>
+---
 
+3. `((P(p) ∧ P(q)) (HI) ⇒ P(Suma p q)) (TI) `
+
+`P(p):`
 ```hs
-esRaiz r p ⇒ esRaiz r (Prod p q)
+esRaiz r p ⇒ esRaiz r (Prod p z)
+```
+`P(q):`
+```hs
+esRaiz r q ⇒ esRaiz r (Prod q z)
+```
+`HI:`
+```hs
+(esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z)) 
+```
+`TI:`
+```hs
+(esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z))  => (esRaiz r (Suma p q) ⇒ esRaiz r (Prod (Suma p q) z))
 ```
 
-<u>*Paso inductivo:*</u>
+Por `esRaiz n p = evaluar n p == 0`:
+```hs
+(evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  =>
+(evaluar r (Suma p q) == 0 ⇒ evaluar r (Prod (Suma p q) z) == 0)
+```
+Por la definición de evaluar: `evaluar r (Prod (Suma p q) z) = evaluar r (Suma p q) * evaluar r z`
+```hs
+(evaluar r p == 0 ⇒ evaluar r p * evaluar r z == 0) ∧ (evaluar r q == 0 ⇒ evaluar r q * evaluar r z == 0)  => 
+(evaluar r (Suma p q) == 0 ⇒ evaluar r (Suma p q) * evaluar r z == 0)
+```
+Por la definición de evaluar: `evaluar r (Suma p q) = evaluar r p + evaluar r q`
+```hs
+(evaluar r p == 0 ⇒ evaluar r p * evaluar r z == 0) ∧ (evaluar r q == 0 ⇒ evaluar r q * evaluar r z == 0)  =>
+(evaluar r p + evaluar r q == 0 ⇒ (evaluar r p + evaluar r q) * evaluar r z == 0)
+```
 
+Por `HI` si `evaluar r p == 0` y `evaluar r q == 0` entonces `evaluar r p * evaluar r z == 0` y `evaluar r q == 0`. 
 
+```hs
+(evaluar r p == 0 ⇒ evaluar r p * evaluar r z == 0) ∧ (evaluar r q == 0 ⇒ evaluar r q * evaluar r z == 0)  =>
+(0 + 0 == 0 ⇒ (0 + 0) * 0 == 0)
+(0 == 0 ⇒ 0 == 0)
+(True ⇒ True)
+True
+```
 
+Por lo tanto vale el caso inductivo `((P(p) ∧ P(q)) (HI) ⇒ P(Suma p q)) (TI) `.
 
+---
 
+4. `((P(p) ∧ P(q)) (HI) ⇒ P(Prod p q)) (TI) `
 
+`P(p): esRaiz r p ⇒ esRaiz r (Prod p z)`
 
-ii. Num a=>∀p::Polinomio a ∀k::a ∀e::a evaluar e (derivado (Prod (Cte k) p)) = evaluar e (Prod (Cte k) (derivado p))
-iii. Num a=>∀p::Polinomio a sinConstantesNegativas p⇒sinConstantesNegativas (derivado p)
+`P(q): esRaiz r q ⇒ esRaiz r (Prod q z)`
+
+`HI: (esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z))`
+
+`TI: HI  => (esRaiz r (Prod p q) ⇒ esRaiz r (Prod (Prod p q) z))`
+
+```hs
+(esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z))  => (esRaiz r (Prod p q) ⇒ esRaiz r (Prod (Prod p q) z))
+```
+Por `esRaiz n p = evaluar n p == 0`:
+```hs
+(evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  => 
+(evaluar r (Prod p q) == 0 ⇒ evaluar r (Prod (Prod p q) z) == 0)
+```
+Por `evaluar r (Prod (Prod p q) z) = evaluar r (Prod p q) * evaluar r z`
+```hs
+(evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  => 
+(evaluar r p * evaluar r q == 0 ⇒ evaluar r (Prod p q) * evaluar r z == 0)
+```
+Por `HI:` Si `evaluar r p == 0 => evaluar r (Prod p z) == 0` 
+```hs
+(evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  => 
+(0 * evaluar r q == 0 ⇒ 0 * evaluar r z == 0)
+0 == 0 ⇒ 0 == 0
+True
+```
+
+Por lo tanto vale el caso inductivo `((P(p) ∧ P(q)) (HI) ⇒ P(Prod p q)) (TI) `.
+
+---
+
+Por lo tanto, por inducción estructural en `p`, se cumple que `esRaiz r p ⇒ esRaiz r (Prod p q)`. $\blacksquare$
+
+---
+
 
 </font>
