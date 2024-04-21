@@ -300,14 +300,29 @@ Que esto vale por hipótesis inductiva. Y por lo tanto vale el caso inductivo.
 
 ```hs
 head (reverse (ponerAlFinal x [])) = x
---por P0 y foldr
-head (reverse (f x [])) = x
-head (reverse [x]) = x
-head [x] = x
-x = x
 ```
-
-### Y por lo tanto vale el caso base
+Por `{P0} ponerAlFinal x = foldr (:) (x:[])`
+```hs
+head (reverse (foldr (:) (x:[]) [])) = x
+```
+Por la definición de `foldr`, `foldr f z [] = z`
+```hs
+head (reverse (x:[])) = x
+```
+Por `{R0} reverse = foldl (flip (:)) []`
+```hs
+head (foldl (flip (:)) [] (x:[])) = x
+```
+Por la definición de `foldl`, `foldl f z [] = z`
+```hs
+head (x:[]) = x
+```
+Por la definición de `(:)`, `x:xs` es una lista que tiene a `x` como primer elemento y a `xs` como cola.
+```hs
+x = x
+True
+```
+Y por lo tanto vale el caso base.
 
 ---
 
