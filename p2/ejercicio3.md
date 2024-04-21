@@ -33,8 +33,9 @@ ii.  ∀ xs::[a] . ∀ ys::[a] . length (append xs ys) = length xs + length ys
 iii. ∀ xs::[a] . ∀ f::(a->b) . length (map f xs) = length xs
 iv.  ∀ xs::[a] . ∀ p::a->Bool . ∀ e::a . (elem e (filter p xs) = True) ⇒ (elem e xs = True)
 (asumiendo Eq a)
-v. ∀ xs::[a] . ∀ x::a . length (ponerAlFinal x xs) = 1 + length xs
-vi. ∀ xs::[a] . ∀ x::a . head (reverse (ponerAlFinal x xs)) = x
+v. ∀ xs::[a] . ∀ x::a . ponerAlFinal x xs = xs ++ (x:[])
+vi. reverse = foldr (\x rec -> rec ++ (x:[])) []
+vii. ∀ xs::[a] . ∀ x::a . head (reverse (ponerAlFinal x xs)) = x
 ```
 
 ## <u>Principio de inducción sobre listas</u>
@@ -236,63 +237,135 @@ Por la definición de `elem`, `elem e (if p x then x : filter p xs else filter p
 
 ---
 
-- ## v. ∀ xs::[a] ∀ x::a length (ponerAlFinal x xs) = 1 + length xs
+- ## v. ∀ xs::[a] . ∀ x::a . ponerAlFinal x xs = xs ++ (x:[])
 
 ### Podemos demostrarlo usando el principio de inducción sobre listas.
 
 ### <u>Caso base</u>: `xs = []`
 
 ```hs
-length (ponerAlFinal x []) = 1 + length []
+ponerAlFinal x [] = [] ++ (x:[])
 ```
 Por `{P0} ponerAlFinal x = foldr (:) (x:[])`
 ```hs
-length (foldr (:) (x:[]) []) = 1 + length []
+foldr (:) (x:[]) [] = [] ++ (x:[])
 ```
 Por la definición de `foldr`, `foldr f z [] = z`
 ```hs
-length (x:[]) = 1 + length []
+(x:[]) = [] ++ (x:[])
 ```
-Por `{L1} length (x:xs) = 1 + length xs`
+Por `{++} xs ++ ys = foldr (:) ys xs`
 ```hs
-1 + length [] = 1 + length []
+(x:[]) = foldr (:) (x:[]) []
+```
+Por la definición de `foldr`, `foldr f z [] = z`
+```hs
+(x:[]) = (x:[])
 True
 ```
-Y por lo tanto vale el caso base
+Y por lo tanto vale el caso base.
 
 ---
 
 ### <u>Caso inductivo</u>: P(xs) ⇒ P(x:xs)
 
-### P(xs) = length (ponerAlFinal x xs) = 1 + length xs
+### P(xs) = ponerAlFinal x xs = xs ++ (x:[])
 
-### P(x:xs) = length (ponerAlFinal x (x:xs)) = 1 + length (x:xs)
+### P(x:xs) = ponerAlFinal x (x:xs) = (x:xs) ++ (x:[])
 
 ```hs
-length (ponerAlFinal x (x:xs)) = 1 + length (x:xs)
+ponerAlFinal x (x:xs) = (x:xs) ++ (x:[])
 ```
 Por `{P0} ponerAlFinal x = foldr (:) (x:[])`
 ```hs
-length (foldr (:) (x:[]) (x:xs)) = 1 + length (x:xs)
+foldr (:) (x:[]) (x:xs) = (x:xs) ++ (x:[])
 ```
-Por la definición de `foldr`, `foldr f z (x:xs) = f x (foldr f z xs)`
+Por la definición de `foldr`, `foldr f z (x:xs) = f x : (foldr f z xs)`
 ```hs
-length (x : foldr (:) (x:[]) xs) = 1 + length (x:xs)
+x : foldr (:) (x:[]) xs = (x:xs) ++ (x:[])
 ```
 Por `{P0} ponerAlFinal x = foldr (:) (x:[])`
 ```hs
-length (x : ponerAlFinal x xs) = 1 + length (x:xs)
+x : ponerAlFinal x xs = (x:xs) ++ (x:[])
 ```
-Por `{L1} length (x:xs) = 1 + length xs`
+Por la definición de `(++)`, `xs ++ ys = foldr (:) ys xs`
 ```hs
-1 + length (ponerAlFinal x xs) = 1 + 1 + length xs
-length (ponerAlFinal x xs) = 1 + length xs
+x : ponerAlFinal x xs = foldr (:) (x:[]) (x:xs)
 ```
-Que esto vale por hipótesis inductiva. Y por lo tanto vale el caso inductivo.
+Por la definición de `foldr`, `foldr f z (x:xs) = f x : (foldr f z xs)`
+```hs
+x : ponerAlFinal x xs = x : foldr (:) (x:[]) xs
+```
+Por `{P0} ponerAlFinal x = foldr (:) (x:[])`
+```hs
+x : ponerAlFinal x xs = x : ponerAlFinal x xs
+True
+```
+Y por lo tanto vale el caso inductivo.
 
 ---
 
-- ## vi. ∀ xs::[a] ∀ x::a head (reverse (ponerAlFinal x xs)) = x
+- ## vi. reverse = foldr (\x rec -> rec ++ (x:[])) []
+
+### Podemos demostrarlo usando el principio de inducción sobre listas.
+
+### <u>Caso base</u>: `xs = []`
+
+```hs
+reverse [] = foldr (\x rec -> rec ++ (x:[])) []
+```
+Por `{R0} reverse = foldl (flip (:)) []`
+```hs
+foldl (flip (:)) [] [] = foldr (\x rec -> rec ++ (x:[])) []
+```
+Por la definición de `foldl`, `foldl f z [] = z`
+```hs
+[] = foldr (\x rec -> rec ++ (x:[])) []
+```
+Por la definición de `foldr`, `foldr f z [] = z`
+```hs
+[] = []
+True
+```
+Y por lo tanto vale el caso base.
+
+---
+
+### <u>Caso inductivo</u>: P(xs) ⇒ P(x:xs)
+
+### P(xs) = reverse xs = foldr (\x rec -> rec ++ (x:[])) xs
+
+### P(x:xs) = reverse (x:xs) = foldr (\x rec -> rec ++ (x:[])) (x:xs)
+
+```hs
+reverse (x:xs) = foldr (\x rec -> rec ++ (x:[])) (x:xs)
+```
+Por `{R0} reverse = foldl (flip (:)) []`
+```hs
+foldl (flip (:)) [] (x:xs) = foldr (\x rec -> rec ++ (x:[])) (x:xs)
+```
+Por la definición de `foldl`, `foldl f z (x:xs) = foldl f ac (x : xs) = foldl f (f ac x) xs`
+```hs
+foldl (flip (:)) (flip (:) [] x) xs = foldr (\x rec -> rec ++ (x:[])) (x:xs)
+```
+Por la definición de `flip`, `flip f x y = f y x`
+```hs
+foldl (flip (:)) [x] (xs) = foldr (\x rec -> rec ++ (x:[])) (x:xs)
+```
+Por la definición de `foldr`, `foldr f z (x:xs) = f x (foldr f z xs)`
+```hs
+foldl (flip (:)) [x] (xs) = (\x rec -> rec ++ (x:[])) x (foldr (\x rec -> rec ++ (x:[])) xs)
+
+(reverse xs) ++ [x] = foldr (\x rec -> rec ++ (x:[])) xs ++ [x]
+```
+Y esto vale por `HI`. Y por lo tanto vale el caso inductivo.
+
+
+---
+
+
+
+- ## vii. ∀ xs::[a] ∀ x::a head (reverse (ponerAlFinal x xs)) = x
 
 ### Podemos demostrarlo usando el principio de inducción sobre listas.
 
