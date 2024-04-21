@@ -9,6 +9,8 @@ foldAEB cHoja cBin arbol = case arbol of
     Bin i r d -> cBin (rec i) r (rec d)
   where rec = foldAEB cHoja cBin 
 
+altura :: AEB a -> Int
+altura = foldAEB (const 1) (\ri _ rd -> 1 + max ri rd)
 
 cantNodos :: AEB a -> Int
 cantNodos = foldAEB (const 1) (\ri _ rd -> 1 + ri + rd)
