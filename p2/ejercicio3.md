@@ -270,14 +270,25 @@ Y por lo tanto vale el caso base
 
 ```hs
 length (ponerAlFinal x (x:xs)) = 1 + length (x:xs)
---por P0 y foldr
-length (ponerAlFinal x (x:xs)) = length (x:xs) + 1
-1 + length(ponerAlFinal x (xs)) = 1 + 1 + length xs
-length (ponerAlFinal x (xs)) = 1 + length xs
---vale por hipótesis inductiva
 ```
-
-### Y por lo tanto vale el caso inductivo
+Por `{P0} ponerAlFinal x = foldr (:) (x:[])`
+```hs
+length (foldr (:) (x:[]) (x:xs)) = 1 + length (x:xs)
+```
+Por la definición de `foldr`, `foldr f z (x:xs) = f x (foldr f z xs)`
+```hs
+length (x : foldr (:) (x:[]) xs) = 1 + length (x:xs)
+```
+Por `{P0} ponerAlFinal x = foldr (:) (x:[])`
+```hs
+length (x : ponerAlFinal x xs) = 1 + length (x:xs)
+```
+Por `{L1} length (x:xs) = 1 + length xs`
+```hs
+1 + length (ponerAlFinal x xs) = 1 + 1 + length xs
+length (ponerAlFinal x xs) = 1 + length xs
+```
+Que esto vale por hipótesis inductiva. Y por lo tanto vale el caso inductivo.
 
 ---
 
