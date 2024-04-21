@@ -89,7 +89,7 @@ Por `{L1} length (x:xs) = 1 + length xs`
 2 + length (duplicar xs) = 2 + 2 * length xs
 length (duplicar xs) = 2 * length xs
 ```
-Y por lo tanto vale el caso inductivo.
+Que esto vale por `HI`. Y por lo tanto vale el caso inductivo.
 
 ---
 
@@ -101,13 +101,18 @@ Y por lo tanto vale el caso inductivo.
 
 ```hs
 length (append [] ys) = length [] + length ys
---por definición de append
+```
+Por `{A0} append [] ys = ys`
+```hs
 length ys = length [] + length ys
---por definición de length
+```
+Por `{L0} length [] = 0`
+```hs
 length ys = 0 + length ys
 length ys = length ys 
+True
 ```
-### Y por lo tanto vale el caso base
+Y por lo tanto vale el caso base.
 
 ---
 
@@ -118,27 +123,33 @@ length ys = length ys
 
 ```hs
 length (append (x:xs) ys) = length (x:xs) + length ys
---por definición de append
+```
+Por `{A1} append (x:xs) ys = x : append xs ys`
+```hs
 length (x:append xs ys) = length (x:xs) + length ys
---por definición de length
+```
+Por `{L1} length (x:xs) = 1 + length xs`
+```hs
 1 + length (append xs ys) = 1 + length xs + length ys
     length (append xs ys) = length xs + length ys
---vale por hipótesis inductiva
 ```
-### Y por lo tanto vale el caso inductivo
+Que esto vale por `HI`. Y por lo tanto vale el caso inductivo.
 
 - ## iii. ∀ xs::[a] ∀ f::(a&rarr;b) length (map f xs) = length xs
 
-### Podemos demostrarlo usando el principio de inducción sobre listas y la extencionalidad funcional.
+### Podemos demostrarlo usando el principio de inducción sobre listas.
 
 ### <u>Caso base</u>: `xs = []`
 
 ```hs
 length (map f []) = length []
---por L0 y map [] = []
-length [] = length [] = 0
 ```
-### Y por lo tanto vale el caso base
+Por la definición de `map`, `map f [] = []`
+```hs
+length [] = length []
+True
+```
+Y por lo tanto vale el caso base
 
 ---
 
@@ -150,33 +161,40 @@ length [] = length [] = 0
 
 ```hs
 length (map f (x:xs)) = length (x:xs)
---por L1 y extencionalidad funcional, map f (x:xs) = f x : map f xs
+```
+Por la definición de `map`, `map f (x:xs) = f x : map f xs` y por `{L1} length (x:xs) = 1 + length xs`
+```hs
 length (f x : map f xs) = 1 + length xs
+```
+Por `{L1} length (f x : map f xs) = 1 + length xs`
+```hs
 1 + length (map f xs) = 1 + length xs
     length (map f xs) = length xs
---vale por hipótesis inductiva
 ```
-
-### Y por lo tanto vale el caso inductivo
+Que esto vale por hipótesis inductiva. Y por lo tanto vale el caso inductivo.
 
 ---
 
 - ## iv. ∀ xs::[a] ∀ p::a&rarr;Bool ∀ e::a (elem e (filter p xs) = True) ⇒ (elem e xs = True)
 
-### Podemos demostrarlo usando el principio de inducción sobre listas y la extencionalidad funcional.
+### Podemos demostrarlo usando el principio de inducción sobre listas.
 
 ### <u>Caso base</u>: `xs = []`
 
 ```hs
 (elem e (filter p []) = True) ⇒ (elem e [] = True)
---por filter _ [] = [] y elem [] = False
+```
+Por la definición de `filter`, `filter p [] = []`
+```hs
 (elem e [] = True) ⇒ (elem e [] = True)
+```
+Por la definición de `elem`, `elem e [] = False`
+```hs
 (False = True) ⇒ (False = True)
 False ⇒ False
 True
 ```
-
-### Y por lo tanto vale el caso base
+Y por lo tanto vale el caso base.
 
 ---
 
@@ -188,34 +206,33 @@ True
 
 ```hs
 (elem e (filter p (x:xs)) = True) ⇒ (elem e (x:xs) = True)
+```
+Por la definición de `filter`, `filter p (x:xs) = if p x then x : filter p xs else filter p xs`
+```hs
 (elem e (if p x then x : filter p xs else filter p xs) = True) ⇒ (elem e (x:xs) = True)
-(elem e (if p x then x : filter p xs else filter p xs) = True) ⇒ (elem e x = True ∨ elem e xs = True)
-(elem e (if p x then x : filter p xs else filter p xs) = True) ⇒ (e == x ∨ elem e xs = True)
 ```
+Por la definición de `elem`, `elem e (if p x then x : filter p xs else filter p xs) = e == x || elem e (filter p xs)`
 
-### Si `p x` es verdadero, entonces `elem e (x:xs) = True` es verdadero, ya que `e == x` es verdadero.
+* Si `p x` es verdadero.
 
-```hs
---si elem e (x : filter p xs) = True
---entonces e == x o elem e xs = True
---si e == x
-True = True) ⇒ (e == x ∨ elem e xs = True)
-True         ⇒ (True ∨ elem e xs = True)
---por lo que la implicación es verdadera
+    ```hs
+    elem e (x:filter p xs) = True ⇒ elem e (x:xs) = True
+    (e == x || elem e (filter p xs)) = True ⇒ (e == x || elem e xs) = True
+    ```
+    * Si `e == x` entonces nos queda `True ⇒ True` que es trivialmente verdadero.
+    * Si `e != x` :
+        ```hs
+        elem e (filter p xs) = True ⇒ elem e xs = True
+        ```
+        Que esto vale por hipótesis inductiva.
 
---si elem e xs = True
---la implicación es verdadera por HI
-```
+* Si `p x` es falso.
 
-### Si `p x` es falso, entonces `elem e (x:xs) = True` es verdadero, ya que `elem e xs = True` es verdadero.
-
-```hs
-(elem e (if Falso then x : filter p xs else filter p xs) = True) ⇒ (e == x ∨ elem e xs = True)
-(elem e (filter p xs) = True) ⇒ ( e==x v elem e xs = True)
---y esto también vale por HI
-```
-
-### Y por lo tanto vale el caso inductivo
+    ```hs
+    elem e (filter p xs) = True ⇒ elem e (x:xs) = True
+    elem e (filter p xs) = True ⇒ (e == x || elem e xs) = True
+    ```
+    Como la implicación para que sea verdadera sólo necesita implicar una de las dos proposiciones del lado derecho de la implicación, entonces esto vale por HI.
 
 ---
 
