@@ -244,15 +244,21 @@ Por la definición de `elem`, `elem e (if p x then x : filter p xs else filter p
 
 ```hs
 length (ponerAlFinal x []) = 1 + length []
---por P0 y foldr 
---ponerAlFinal x [] = (f x [] = [x])
-length [x] = 1 + length []
-1 + length [] = 1 + 0
-1 + 0 = 1
-1 = 1
 ```
-
-### Y por lo tanto vale el caso base
+Por `{P0} ponerAlFinal x = foldr (:) (x:[])`
+```hs
+length (foldr (:) (x:[]) []) = 1 + length []
+```
+Por la definición de `foldr`, `foldr f z [] = z`
+```hs
+length (x:[]) = 1 + length []
+```
+Por `{L1} length (x:xs) = 1 + length xs`
+```hs
+1 + length [] = 1 + length []
+True
+```
+Y por lo tanto vale el caso base
 
 ---
 
