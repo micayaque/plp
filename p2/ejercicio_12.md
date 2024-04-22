@@ -186,7 +186,9 @@ data Poli a = X
 
     ---
 
-Por lo tanto, por inducción estructural en `p`, se cumple que `esRaiz r p ⇒ esRaiz r (Prod p q)`. $\blacksquare$
+Por lo tanto, por inducción estructural en `p`, se cumple que:
+
+ `esRaiz r p ⇒ esRaiz r (Prod p q)`. $\blacksquare$
 
 ---
 
@@ -375,13 +377,128 @@ Por lo tanto, por inducción estructural en `p`, se cumple que `esRaiz r p ⇒ e
 
     ---
 
-Por lo tanto, por inducción estructural en `p`, se cumple que `evaluar e (derivado (Prod (Cte k) p)) = evaluar e (Prod (Cte k) (derivado p))`. $\blacksquare$
+Por lo tanto, por inducción estructural en `p`, se cumple que: 
+
+`evaluar e (derivado (Prod (Cte k) p)) = evaluar e (Prod (Cte k) (derivado p))`. $\blacksquare$
 
 ---
 
 ### iii. `Num a=>∀p::Polinomio a` 
 ### `sinConstantesNegativas p⇒sinConstantesNegativas (derivado p)`
 
+---
+
+<u>*Demostración*</u>
+
+*Por inducción estructural en `p`.*
+
+<u>*Casos base:*</u>
+
+1.  `p = X`
+
+    ```hs
+    sinConstantesNegativas X ⇒ sinConstantesNegativas (derivado X)
+    ```
+    Por la definición de `derivado X -> Cte 1`:
+    ```hs
+    sinConstantesNegativas X ⇒ sinConstantesNegativas (Cte 1)
+    ```
+    Por la definición de `sinConstantesNegativas = foldPoli True (>=0) (&&) (&&)`:
+    ```hs
+    True ⇒ sinConstantesNegativas (Cte 1)
+    True ⇒ True
+    True
+    ```
+
+    Por lo tanto vale el caso base `p = X`.
+
+    ---
+
+2.  `p = Cte k`
+
+    ```hs
+    sinConstantesNegativas (Cte k) ⇒ sinConstantesNegativas (derivado (Cte k))
+    ```
+    Por la definición de `derivado Cte k -> Cte 0`:
+    ```hs
+    sinConstantesNegativas (Cte k) ⇒ sinConstantesNegativas (Cte 0)
+    ```
+    Por la definición de `sinConstantesNegativas = foldPoli True (>=0) (&&) (&&)`:
+    ```hs
+    Cte k >= 0 ⇒ Cte 0 >= 0
+    Cte k >= 0 ⇒ True
+    True
+    ```
+    Por lo tanto vale el caso base `p = Cte k`.
+
+    ---
+
+<u>*Casos inductivos*</u>
+
+3. `((P(p) ∧ P(q)) (HI) ⇒ P(Suma p q)) (TI) `
+
+    `P(p): sinConstantesNegativas p ⇒ sinConstantesNegativas (derivado p)`
+
+    `P(q): sinConstantesNegativas q ⇒ sinConstantesNegativas (derivado q)`
+
+    `P(Suma p q): sinConstantesNegativas (Suma p q) ⇒ sinConstantesNegativas (derivado (Suma p q))`
+
+    ```hs
+    sinConstantesNegativas (Suma p q) ⇒ sinConstantesNegativas (derivado (Suma p q))
+    ```
+    Por la definición de `derivado Suma p q -> Suma (derivado p) (derivado q)`:
+    ```hs
+    sinConstantesNegativas (Suma p q) ⇒ sinConstantesNegativas (Suma (derivado p) (derivado q))
+    ```
+    Por la definición de `sinConstantesNegativas = foldPoli True (>=0) (&&) (&&)`:
+    ```hs
+    (sinConstantesNegativas p && sinConstantesNegativas q) ⇒ (sinConstantesNegativas (derivado p) && sinConstantesNegativas (derivado q))
+    ```
+    Y esto vale por hipótesis inductiva.
+
+    Por lo tanto vale el caso inductivo `((P(p) ∧ P(q)) (HI) ⇒ P(Suma p q))`.
+
+    ---
+
+4. `((P(p) ∧ P(q)) (HI) ⇒ P(Prod p q))`
+
+    `P(p): sinConstantesNegativas p ⇒ sinConstantesNegativas (derivado p)`
+
+    `P(q): sinConstantesNegativas q ⇒ sinConstantesNegativas (derivado q)`
+
+    `P(Prod p q): sinConstantesNegativas (Prod p q) ⇒ sinConstantesNegativas (derivado (Prod p q))`
+
+    ```hs
+    sinConstantesNegativas (Prod p q) ⇒ sinConstantesNegativas (derivado (Prod p q))
+    ```
+    Por la definición de `derivado Prod p q -> Suma (Prod (derivado p) q) (Prod (derivado q) p)`:
+    ```hs
+    sinConstantesNegativas (Prod p q) ⇒ sinConstantesNegativas (Suma (Prod (derivado p) q) (Prod (derivado q) p))
+    ```
+    Por la definición de `sinConstantesNegativas = foldPoli True (>=0) (&&) (&&)`:
+    ```hs
+    (sinConstantesNegativas p && sinConstantesNegativas q) ⇒ 
+    (sinConstantesNegativas (Prod (derivado p) q) && sinConstantesNegativas (Prod (derivado q) p))
+
+    (sinConstantesNegativas p && sinConstantesNegativas q) ⇒
+    (sinConstantesNegativas (derivado p) && sinConstantesNegativas q) && (sinConstantesNegativas (derivado q) && sinConstantesNegativas p)
+
+    (sinConstantesNegativas p && sinConstantesNegativas q) ⇒
+    (sinConstantesNegativas (derivado p) && sinConstantesNegativas (derivado q))
+    ```
+    Y esto vale por hipótesis inductiva.
+
+    Por lo tanto vale el caso inductivo `((P(p) ∧ P(q)) (HI) ⇒ P(Prod p q))`.
+
+    ---
+
+Por lo tanto, por inducción estructural en `p`, se cumple que:
+
+ `sinConstantesNegativas p ⇒ sinConstantesNegativas (derivado p)`. $\blacksquare$
+
+---
+
+*La recursión utilizada en la definición de la función `derivado` es estructural.*
 
 
 </font>
