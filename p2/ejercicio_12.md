@@ -48,7 +48,9 @@ data Poli a = X
 
 ---
 
-i. `Num a=>∀p::(Polinomio a) ∀q::(Polinomio a) ∀r::a (esRaiz r p) ⇒ (esRaiz r (Prod p q))`
+### i. `Num a=>∀p::(Polinomio a) ∀q::(Polinomio a) ∀r::a` 
+### `(esRaiz r p) ⇒ (esRaiz r (Prod p q))`
+
 ---
 
 <u>*Demostración*</u>
@@ -76,7 +78,7 @@ i. `Num a=>∀p::(Polinomio a) ∀q::(Polinomio a) ∀r::a (esRaiz r p) ⇒ (esR
 
     Por lo tanto vale el caso base `p = X`.
 
----
+    ---
 2.  `p = Cte k`
 
     ```hs
@@ -96,95 +98,290 @@ i. `Num a=>∀p::(Polinomio a) ∀q::(Polinomio a) ∀r::a (esRaiz r p) ⇒ (esR
 
     Por lo tanto vale el caso base `p = Cte k`.
 
----
+    ---
+
+<u>*Casos inductivos*</u>
 
 3. `((P(p) ∧ P(q)) (HI) ⇒ P(Suma p q)) (TI) `
 
-`P(p):`
-```hs
-esRaiz r p ⇒ esRaiz r (Prod p z)
-```
-`P(q):`
-```hs
-esRaiz r q ⇒ esRaiz r (Prod q z)
-```
-`HI:`
-```hs
-(esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z)) 
-```
-`TI:`
-```hs
-(esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z))  => (esRaiz r (Suma p q) ⇒ esRaiz r (Prod (Suma p q) z))
-```
+    `P(p):`
+    ```hs
+    esRaiz r p ⇒ esRaiz r (Prod p z)
+    ```
+    `P(q):`
+    ```hs
+    esRaiz r q ⇒ esRaiz r (Prod q z)
+    ```
+    `HI:`
+    ```hs
+    (esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z)) 
+    ```
+    `TI:`
+    ```hs
+    (esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z))  => (esRaiz r (Suma p q) ⇒ esRaiz r (Prod (Suma p q) z))
+    ```
 
-Por `esRaiz n p = evaluar n p == 0`:
-```hs
-(evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  =>
-(evaluar r (Suma p q) == 0 ⇒ evaluar r (Prod (Suma p q) z) == 0)
-```
-Por la definición de evaluar: `evaluar r (Prod (Suma p q) z) = evaluar r (Suma p q) * evaluar r z`
-```hs
-(evaluar r p == 0 ⇒ evaluar r p * evaluar r z == 0) ∧ (evaluar r q == 0 ⇒ evaluar r q * evaluar r z == 0)  => 
-(evaluar r (Suma p q) == 0 ⇒ evaluar r (Suma p q) * evaluar r z == 0)
-```
-Por la definición de evaluar: `evaluar r (Suma p q) = evaluar r p + evaluar r q`
-```hs
-(evaluar r p == 0 ⇒ evaluar r p * evaluar r z == 0) ∧ (evaluar r q == 0 ⇒ evaluar r q * evaluar r z == 0)  =>
-(evaluar r p + evaluar r q == 0 ⇒ (evaluar r p + evaluar r q) * evaluar r z == 0)
-```
+    Por `esRaiz n p = evaluar n p == 0`:
+    ```hs
+    (evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  =>
+    (evaluar r (Suma p q) == 0 ⇒ evaluar r (Prod (Suma p q) z) == 0)
+    ```
+    Por la definición de evaluar: `evaluar r (Prod (Suma p q) z) = evaluar r (Suma p q) * evaluar r z`
+    ```hs
+    (evaluar r p == 0 ⇒ evaluar r p * evaluar r z == 0) ∧ (evaluar r q == 0 ⇒ evaluar r q * evaluar r z == 0)  => 
+    (evaluar r (Suma p q) == 0 ⇒ evaluar r (Suma p q) * evaluar r z == 0)
+    ```
+    Por la definición de evaluar: `evaluar r (Suma p q) = evaluar r p + evaluar r q`
+    ```hs
+    (evaluar r p == 0 ⇒ evaluar r p * evaluar r z == 0) ∧ (evaluar r q == 0 ⇒ evaluar r q * evaluar r z == 0)  =>
+    (evaluar r p + evaluar r q == 0 ⇒ (evaluar r p + evaluar r q) * evaluar r z == 0)
+    ```
 
-Por `HI` si `evaluar r p == 0` y `evaluar r q == 0` entonces `evaluar r p * evaluar r z == 0` y `evaluar r q == 0`. 
+    Por `HI` si `evaluar r p == 0` y `evaluar r q == 0` entonces `evaluar r p * evaluar r z == 0` y `evaluar r q == 0`. 
 
-```hs
-(evaluar r p == 0 ⇒ evaluar r p * evaluar r z == 0) ∧ (evaluar r q == 0 ⇒ evaluar r q * evaluar r z == 0)  =>
-(0 + 0 == 0 ⇒ (0 + 0) * 0 == 0)
-(0 == 0 ⇒ 0 == 0)
-(True ⇒ True)
-True
-```
+    ```hs
+    (evaluar r p == 0 ⇒ evaluar r p * evaluar r z == 0) ∧ (evaluar r q == 0 ⇒ evaluar r q * evaluar r z == 0)  =>
+    (0 + 0 == 0 ⇒ (0 + 0) * 0 == 0)
+    (0 == 0 ⇒ 0 == 0)
+    (True ⇒ True)
+    True
+    ```
 
-Por lo tanto vale el caso inductivo `((P(p) ∧ P(q)) (HI) ⇒ P(Suma p q)) (TI) `.
+    Por lo tanto vale el caso inductivo `((P(p) ∧ P(q)) (HI) ⇒ P(Suma p q)) (TI) `.
 
----
+    ---
 
 4. `((P(p) ∧ P(q)) (HI) ⇒ P(Prod p q)) (TI) `
 
-`P(p): esRaiz r p ⇒ esRaiz r (Prod p z)`
+    `P(p): esRaiz r p ⇒ esRaiz r (Prod p z)`
 
-`P(q): esRaiz r q ⇒ esRaiz r (Prod q z)`
+    `P(q): esRaiz r q ⇒ esRaiz r (Prod q z)`
 
-`HI: (esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z))`
+    `HI: (esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z))`
 
-`TI: HI  => (esRaiz r (Prod p q) ⇒ esRaiz r (Prod (Prod p q) z))`
+    `TI: HI  => (esRaiz r (Prod p q) ⇒ esRaiz r (Prod (Prod p q) z))`
 
-```hs
-(esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z))  => (esRaiz r (Prod p q) ⇒ esRaiz r (Prod (Prod p q) z))
-```
-Por `esRaiz n p = evaluar n p == 0`:
-```hs
-(evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  => 
-(evaluar r (Prod p q) == 0 ⇒ evaluar r (Prod (Prod p q) z) == 0)
-```
-Por `evaluar r (Prod (Prod p q) z) = evaluar r (Prod p q) * evaluar r z`
-```hs
-(evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  => 
-(evaluar r p * evaluar r q == 0 ⇒ evaluar r (Prod p q) * evaluar r z == 0)
-```
-Por `HI:` Si `evaluar r p == 0 => evaluar r (Prod p z) == 0` 
-```hs
-(evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  => 
-(0 * evaluar r q == 0 ⇒ 0 * evaluar r z == 0)
-0 == 0 ⇒ 0 == 0
-True
-```
+    ```hs
+    (esRaiz r p ⇒ esRaiz r (Prod p z)) ∧ (esRaiz r q ⇒ esRaiz r (Prod q z))  => (esRaiz r (Prod p q) ⇒ esRaiz r (Prod (Prod p q) z))
+    ```
+    Por `esRaiz n p = evaluar n p == 0`:
+    ```hs
+    (evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  => 
+    (evaluar r (Prod p q) == 0 ⇒ evaluar r (Prod (Prod p q) z) == 0)
+    ```
+    Por `evaluar r (Prod (Prod p q) z) = evaluar r (Prod p q) * evaluar r z`
+    ```hs
+    (evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  => 
+    (evaluar r p * evaluar r q == 0 ⇒ evaluar r (Prod p q) * evaluar r z == 0)
+    ```
+    Por `HI:` Si `evaluar r p == 0 => evaluar r (Prod p z) == 0` 
+    ```hs
+    (evaluar r p == 0 ⇒ evaluar r (Prod p z) == 0) ∧ (evaluar r q == 0 ⇒ evaluar r (Prod q z) == 0)  => 
+    (0 * evaluar r q == 0 ⇒ 0 * evaluar r z == 0)
+    0 == 0 ⇒ 0 == 0
+    True
+    ```
 
-Por lo tanto vale el caso inductivo `((P(p) ∧ P(q)) (HI) ⇒ P(Prod p q)) (TI) `.
+    Por lo tanto vale el caso inductivo `((P(p) ∧ P(q)) (HI) ⇒ P(Prod p q)) (TI) `.
 
----
+    ---
 
 Por lo tanto, por inducción estructural en `p`, se cumple que `esRaiz r p ⇒ esRaiz r (Prod p q)`. $\blacksquare$
 
 ---
+
+### ii. `Num a=>∀p::Polinomio a ∀k::a ∀e::a`
+ 
+### `evaluar e (derivado (Prod (Cte k) p)) = evaluar e (Prod (Cte k) (derivado p))`
+
+---
+
+<u>*Demostración*</u>
+
+*Por inducción estructural en `p`.*
+
+<u>*Casos base:*</u>
+
+1.  `p = X`
+
+    ```hs
+    evaluar e (derivado (Prod (Cte k) X)) = evaluar e (Prod (Cte k) (derivado X))
+    ```
+    Por la definición de `derivado X -> Cte 1`:
+    ```hs
+    evaluar e (derivado (Prod (Cte k) X)) = evaluar e (Prod (Cte k) (Cte 1))
+    ```
+    Por la definición de `Prod`:
+    ```hs
+    evaluar e (derivado (Prod (Cte k) X)) = evaluar e Cte k
+    ```
+    Por la definición de `evaluar`:
+    ```hs
+    evaluar e (derivado (Prod (Cte k) X)) = k
+    ```
+    Por la definición de `derivado Prod p q -> Suma (Prod (derivado p) q) (Prod (derivado q) p)`:
+    ```hs
+    evaluar e (Suma (Prod (derivado (Cte k)) X) (Prod (derivado X) (Cte k))) = k
+    ```
+    Por la definición de `derivado X -> Cte 1` y `derivado (Cte k) -> Cte 0`:
+    ```hs
+    evaluar e (Suma (Prod (Cte 0) X) (Prod (Cte 1) (Cte k))) = k
+    ```
+    Por la definición de `Prod`:
+    ```hs
+    evaluar e (Suma (Cte 0) (Cte k)) = k
+    ```
+    Por la definición de `Suma`:
+    ```hs
+    evaluar e (Cte k) = k
+    ```
+    Por la definición de `evaluar`:
+    ```hs
+    k = k
+    ```
+
+    Por lo tanto vale el caso base `p = X`.
+
+    ---
+
+2.  `p = Cte k`
+
+    ```hs
+    evaluar e (derivado (Prod (Cte k) (Cte k))) = evaluar e (Prod (Cte k) (derivado (Cte k)))
+    ```
+    Por la definición de `derivado Cte k -> Cte 0`:
+    ```hs
+    evaluar e (derivado (Prod (Cte k) (Cte k))) = evaluar e (Prod (Cte k) (Cte 0))
+    ```
+    Por la definición de `Prod`:
+    ```hs
+    evaluar e (derivado (Prod (Cte k) (Cte k))) = evaluar e (Cte 0)
+    ```
+    Por la definición de `evaluar`:
+    ```hs
+    evaluar e (derivado (Prod (Cte k) (Cte k))) = 0
+    ```
+    Por la definición de `derivado Prod p q -> Suma (Prod (derivado p) q) (Prod (derivado q) p)`:
+    ```hs
+    evaluar e (Suma (Prod (derivado (Cte k)) (Cte k)) (Prod (derivado (Cte k)) (Cte k))) = 0
+    ```
+    Por la definición de `derivado Cte k -> Cte 0`:
+    ```hs
+    evaluar e (Suma (Prod (Cte 0) (Cte k)) (Prod (Cte 0) (Cte k))) = 0
+    ```
+    Por la definición de `Prod`:
+    ```hs
+    evaluar e (Suma (Cte 0) (Cte 0)) = 0
+    ```
+    Por la definición de `Suma`:
+    ```hs
+    evaluar e (Cte 0) = 0
+    ```
+    Por la definición de `evaluar`:
+    ```hs
+    0 = 0
+    True
+    ```
+
+    Por lo tanto vale el caso base `p = Cte k`.
+
+    ---
+
+
+<u>*Casos inductivos*</u>
+
+3. `((P(p) ∧ P(q)) (HI) ⇒ P(Suma p q)) (TI) `
+
+    `P(p): evaluar e (derivado (Prod (Cte k) p)) = evaluar e (Prod (Cte k) (derivado p))`
+
+    `P(q): evaluar e (derivado (Prod (Cte k) q)) = evaluar e (Prod (Cte k) (derivado q))`
+
+    `P(Suma p q): evaluar e (derivado (Prod (Cte k) (Suma p q))) = evaluar e (Prod (Cte k) (derivado (Suma p q))`
+
+    ```hs
+    evaluar e (derivado (Prod (Cte k) (Suma p q))) = evaluar e (Prod (Cte k) (derivado (Suma p q)))
+    ```
+    Por la definición de `derivado Prod p q -> Suma (Prod (derivado p) q) (Prod (derivado q) p)`:
+    ```hs
+    evaluar e (Suma (Prod (derivado (Cte k)) (Suma p q)) (Prod (derivado (Suma p q)) (Cte k))) = evaluar e (Prod (Cte k) (derivado (Suma p q)))
+    ```
+    Por la definición de `derivado Cte k -> Cte 0`:
+    ```hs
+    evaluar e (Suma (Prod (Cte 0) (Suma p q)) (Prod (derivado (Suma p q)) (Cte k))) = evaluar e (Prod (Cte k) (derivado (Suma p q)))
+    ```
+    Por la definición de `derivado Suma p q -> Suma (derivado p) (derivado q)`
+    ```hs
+    evaluar e (Suma (Prod (Cte 0) (Suma p q)) (Prod (Suma (derivado p) (derivado q)) (Cte k))) = evaluar e (Prod (Cte k) (Suma (derivado p) (derivado q)))
+    ```
+    Por la definición de `Prod`:
+    ```hs
+    evaluar e (Suma (Cte 0) (Prod (Suma (derivado p) (derivado q)) (Cte k))) = evaluar e (Prod (Cte k) (Suma (derivado p) (derivado q)))
+    ```
+    Por la definición de `Suma`:
+    ```hs
+    evaluar e (Prod (Suma (derivado p) (derivado q)) Cte k) = evaluar e (Prod (Cte k) (Suma (derivado p) (derivado q)))
+    ```
+    El orden de los factores no altera el producto:
+    ```hs
+    evaluar e (Prod (Suma (derivado p) (derivado q)) Cte k) = 
+    evaluar e (Prod (Suma (derivado p) (derivado q)) Cte k)
+    True
+    ```
+    Por lo tanto vale el caso inductivo `((P(p) ∧ P(q)) (HI) ⇒ P(Suma p q)) (TI) `.
+
+
+---
+
+4. `((P(p) ∧ P(q)) (HI) ⇒ P(Prod p q))`
+
+    `P(p): evaluar e (derivado (Prod (Cte k) p)) = evaluar e (Prod (Cte k) (derivado p))`
+
+    `P(q): evaluar e (derivado (Prod (Cte k) q)) = evaluar e (Prod (Cte k) (derivado q))`
+
+    `P(Prod p q): evaluar e (derivado (Prod (Cte k) (Prod p q))) = evaluar e (Prod (Cte k) (derivado (Prod p q))`
+
+    ---
+
+    ```hs
+    evaluar e (derivado (Prod (Cte k) (Prod p q))) = evaluar e (Prod (Cte k) (derivado (Prod p q)))
+    ```
+    Por la definición de `derivado Prod p q -> Suma (Prod (derivado p) q) (Prod (derivado q) p)`:
+    ```hs
+    evaluar e (Suma (Prod (derivado (Cte k)) (Prod p q)) (Prod (derivado (Prod p q)) (Cte k))) = evaluar e (Prod (Cte k) (Suma (Prod (derivado p) q) (Prod (derivado q) p)))
+
+    evaluar e (Suma (Prod (derivado (Cte k)) (Prod p q)) (Prod (Suma (Prod (derivado p) q) (Prod (derivado q) p)) (Cte k))) = evaluar e (Prod (Cte k) (Suma (Prod (derivado p) q) (Prod (derivado q) p)))
+
+    ```
+    Por la definición de `derivado Cte k -> Cte 0`:
+    ```hs
+    evaluar e (Suma (Prod (Cte 0) (Prod p q)) (Prod (Suma (Prod (derivado p) q) (Prod (derivado q) p)) (Cte k))) = evaluar e (Prod (Cte k) (Suma (Prod (derivado p) q) (Prod (derivado q) p)))
+    ```
+    Por la definición de `Prod`:
+    ```hs
+    evaluar e (Suma (Cte 0) (Prod (Suma (Prod (derivado p) q) (Prod (derivado q) p)) (Cte k))) = evaluar e (Prod (Cte k) (Suma (Prod (derivado p) q) (Prod (derivado q) p)))
+    ```
+    Por la definición de `Suma`:
+    ```hs
+    evaluar e (Prod (Suma (Prod (derivado p) q) (Prod (derivado q) p)) (Cte k)) = 
+    evaluar e (Prod (Cte k) (Suma (Prod (derivado p) q) (Prod (derivado q) p)))
+    ```
+    Como en los polinomios el orden de los factores no altera el Producto:
+    ```hs
+    evaluar e (Prod (Suma (Prod (derivado p) q) (Prod (derivado q) p)) (Cte k)) = 
+    evaluar e (Prod (Suma (Prod (derivado p) q) (Prod (derivado q) p)) (Cte k))
+    True
+    ```
+    Por lo tanto vale el caso inductivo `((P(p) ∧ P(q)) (HI) ⇒ P(Prod p q))`.
+
+    ---
+
+Por lo tanto, por inducción estructural en `p`, se cumple que `evaluar e (derivado (Prod (Cte k) p)) = evaluar e (Prod (Cte k) (derivado p))`. $\blacksquare$
+
+---
+
+### iii. `Num a=>∀p::Polinomio a` 
+### `sinConstantesNegativas p⇒sinConstantesNegativas (derivado p)`
+
 
 
 </font>
