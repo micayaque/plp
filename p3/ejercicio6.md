@@ -17,7 +17,9 @@ $\frac{\Gamma \  \vdash \ (P ⇒ Q ⇒ R) \ \ \ \Gamma \ \vdash \ P }{\Gamma \ \
 ---
 
 $\Gamma = (P ⇒ Q ⇒ R), \ (P ⇒ Q), \ P$\
-Sabemos que P vale, entonces tenemos que: $\Gamma \vdash Q ⇒ R$,    $\Gamma \vdash Q$\
+Sabemos que P vale, entonces tenemos que: $\Gamma \vdash Q ⇒ R$,    $\Gamma \vdash Q$
+
+
 ![eliminación_implicacion](./img/elim_implicación.png)
 
 $\frac{\Gamma \ \vdash Q ⇒ R\ \ \ \ \ \ \ \ \ \ \ \ \ \ \Gamma \ \vdash Q}{(P ⇒ Q ⇒ R),\ (P ⇒ Q), \ P \ \vdash R} ⇒_e$
