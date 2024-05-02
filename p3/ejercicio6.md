@@ -12,8 +12,7 @@
 ### <u>*i.Modus ponens relativizado:*</u> (P ⇒ Q ⇒ R) ⇒ (P ⇒ Q) ⇒ P ⇒ R
 ---
 
-
-$\frac{\Gamma \  \vdash \ (P ⇒ Q ⇒ R) \ \ \ \Gamma \ \vdash \ P }{\Gamma \ \vdash Q ⇒ R}{}⇒_e \frac{\Gamma \ \vdash \ P ⇒ Q \ \ \ \Gamma \ \vdash \ P}{\Gamma \ \vdash Q}⇒_e$
+$\frac{\Gamma \  \vdash \ (P ⇒ Q ⇒ R) \ \  (ax) \ \ \ \Gamma \ \vdash \ P \ \ (ax)}{\Gamma \ \vdash Q ⇒ R}{}⇒_e \frac{\Gamma \ \vdash \ P ⇒ Q \ \  (ax) \ \ \ \Gamma \ \vdash \ P \ \  (ax)}{\Gamma \ \vdash Q}⇒_e$
 ---
 
 $\Gamma = (P ⇒ Q ⇒ R), \ (P ⇒ Q), \ P$\
@@ -40,9 +39,123 @@ $\frac{(P ⇒ Q ⇒ R) \ \vdash (P ⇒ Q) ⇒ P ⇒ R}{\vdash (P ⇒ Q ⇒ R) �
 ### <u>*ii. Reducción al absurdo:*</u> (P ⇒ ⊥) ⇒ ¬P
 ---
 
-$\frac{}{} $
+Por eliminación de la implicación:
+
+$\Gamma = (P ⇒ ⊥), P \ \ \ \sigma = ⊥ $
+
+$\frac{(P ⇒ ⊥), P \ \vdash \ P ⇒ ⊥ \ \ \  (ax) \ \ \ \ \ \ (P ⇒ ⊥), P \ \vdash \ P \ \ \  (ax)}{(P ⇒ ⊥) , \ \ P \ \vdash \ ⊥}⇒_e$
+---
+![intruducción_negación](./img/intro_negación.png)
+
+$\Gamma = (P ⇒ ⊥) \ \ \ \tau = P $
+
+
+$\frac{(P ⇒ ⊥) , \ \ P \ \vdash \ ⊥}{(P ⇒ ⊥) \ \vdash \ ¬P}¬_i$
 ---
 
+$\frac{(P ⇒ ⊥) \ \vdash \ ¬P}{\vdash \ (P ⇒ ⊥) ⇒ ¬P}⇒_i $
+---
+
+---
+
+### <u>*iii. Introducción de la doble negación:*</u> P ⇒ ¬¬P
+---
+
+Por la eliminación de la negación :
+
+![eliminación_negación](./img/elim_negación.png)
+
+$\Gamma = P, \ ¬P \ \ \tau = P$
+
+
+$\frac{P, \ ¬P \ \vdash P \ \ \  (ax) \ \ \ \ \ \  P, \ ¬P \ \vdash \ ¬P \ \ \  (ax)}{P \ , ¬P \ \vdash \ ⊥ }¬_e $
+---
+
+Por la introducción de la negación: $\Gamma = P, \tau = ¬P$
+
+$\frac{P \ , ¬P \ \vdash \ ⊥}{P \ \vdash \ ¬¬P}¬_i $
+---
+
+$\frac{P \ \vdash \ ¬¬P}{\vdash P ⇒ ¬¬P}⇒_i $
+---
+---
+### <u>*iv. Eliminación de la triple negación:*</u> ¬¬¬P ⇒ ¬P 
+---
+
+$\frac{}{} $
+
+---
+---
+
+### <u>*v. Contraposición:*</u> (P ⇒ Q) ⇒ (¬Q ⇒ ¬P ) 
+---
+
+$\frac{}{} $
+
+---
+---
+
+### <u>*vi. Adjunción:*</u> ((P ∧ Q) ⇒ R) ⇔ (P ⇒ Q ⇒ R) 
+---
+
+$\frac{}{} $
+
+---
+---
+
+### <u>*vii. de Morgan (I):*</u> ¬(P ∨ Q) ⇔ (¬P ∧ ¬Q)
+---
+
+$\frac{}{} $
+
+---
+---
+
+### <u>*viii. de Morgan (II):*</u> ¬(P ∧ Q) ⇔ (¬P ∨ ¬Q).
+**Para la dirección ⇒ es necesario usar principios de razonamiento clásicos.**
+
+---
+
+$\frac{}{} $
+
+---
+---
+
+### <u>*ix. Conmutatividad (∧):*</u> (P ∧ Q) ⇒ (Q ∧ P )
+
+---
+
+$\frac{}{} $
+
+---
+---
+
+### <u>*x. Asociatividad (∧):*</u> ((P ∧ Q) ∧ R) ⇔ (P ∧ (Q ∧ R))
+
+---
+
+$\frac{}{} $
+
+---
+---
+
+### <u>*xi. Conmutatividad(∨):*</u> (P ∨ Q) ⇒ (Q ∨ P )
+
+---
+
+$\frac{}{} $
+
+---
+---
+
+### <u>*xii. Asociatividad (∨):*</u> ((P ∨ Q) ∨ R) ⇔ (P ∨ (Q ∨ R))
+
+---
+
+$\frac{}{} $
+
+---
+---
 
 
 </font>
