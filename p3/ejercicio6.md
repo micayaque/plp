@@ -82,8 +82,20 @@ $\frac{P \ \vdash \ ¬¬P}{\vdash P ⇒ ¬¬P}⇒_i $
 ### <u>*iv. Eliminación de la triple negación:*</u> ¬¬¬P ⇒ ¬P 
 ---
 
-$\frac{}{} $
+![alt text](image.png)
 
+$\frac{¬¬¬P, \ P \ \vdash \ P \ \ \  (ax) \ \ \ \ \ \ ¬¬¬P,\ P \ \vdash \ P \ \ \  (ax)}{¬¬¬P, \ P \ \vdash \ ¬¬¬P \ \ \  (ax) \ \ \ \ \ \  ¬¬¬P, \ P \ \vdash \ ¬¬P \ }¬¬_i$
+---
+
+$\tau = ¬¬P$
+
+$\frac{¬¬¬P, \ P \ \vdash \ ¬¬¬P \ \ \  (ax) \ \ \ \ \ \  ¬¬¬P, \ P \ \vdash \ ¬¬P \ }{¬¬¬P, \ P \ \vdash \ ⊥}¬_e$
+---
+
+$\frac{¬¬¬P, \ P \ \vdash \ ⊥}{¬¬¬P \ \vdash \ ¬P} ¬_i$
+---
+
+$\frac{¬¬¬P \ \vdash \ ¬P}{\vdash \  ¬¬¬P ⇒ ¬P} ⇒_i$
 ---
 ---
 
