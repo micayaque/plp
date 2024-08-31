@@ -2,7 +2,16 @@
 --i. Definir la función permutaciones :: [a] -> [[a]], que dada una lista devuelve todas sus permutaciones
 --Se recomienda utilizar concatMap :: (a -> [b]) -> [a] -> [b], y también take y drop.
 
+--Aplicación de la función:
+--concatMap aplica la función (a -> [b]) a cada elemento de la lista [a], generando una lista de listas de tipo [[b]].
+--Concatenación:
+--Luego, concatMap concatena todas estas listas individuales ([b]) en una sola lista de tipo [b].
 
+--consultar
+permutaciones :: [a] -> [[a]]
+permutaciones = foldr (concatMap . agregarEnTodasLasPosiciones) [[]]
+    where   agregarEnTodasLasPosiciones j js = [ fst h ++ [j]++ snd h | h <- partir js]
+            partir xs = [splitAt n xs | n <- [0..(length xs)]]
 
 --ii. Definir la función partes, que recibe una lista L y devuelve la lista de todas las listas formadas por los
 --mismos elementos de L, en su mismo orden de aparición. 
