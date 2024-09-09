@@ -25,4 +25,7 @@ Esta función sí, sigue el esquema de recursión estructural.
 
 ```haskell
 entrelazar :: [a] -> [a] -> [a]
-entrelazar xs = foldr (\ x rec -> (ys -> if null ys then x : rec))
+entrelazar xs = foldr (\ x rec -> (ys -> if null ys 
+                                then x : rec [] 
+                            else x : head ys : rec tail ys)) id
+```
