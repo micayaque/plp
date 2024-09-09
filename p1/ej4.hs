@@ -9,9 +9,11 @@
 
 --consultar
 permutaciones :: [a] -> [[a]]
-permutaciones = foldr (concatMap . agregarEnTodasLasPosiciones) [[]]
-    where   agregarEnTodasLasPosiciones j js = [ fst h ++ [j]++ snd h | h <- partir js]
-            partir xs = [splitAt n xs | n <- [0..(length xs)]]
+-- permutaciones = foldr (concatMap . agregarEnTodasLasPosiciones) [[]]
+--     where   agregarEnTodasLasPosiciones j js = [ fst h ++ [j]++ snd h | h <- partir js]
+--             partir xs = [splitAt n xs | n <- [0..(length xs)]]
+
+permutaciones =  foldr (\x rec -> concatMap (\ys -> [take n ys ++ [x] ++ drop n ys | n <- [0..length ys]]) rec) [[]]
 
 --ii. Definir la función partes, que recibe una lista L y devuelve la lista de todas las listas formadas por los
 --mismos elementos de L, en su mismo orden de aparición. 
