@@ -8,6 +8,7 @@ recr f z (x : xs)   = f x xs (recr f z xs)
 , que dados un **elemento** y una **lista** devuelve el resultado de eliminar de la lista la primera aparición del elemento (si está presente).
 
 ```haskell
+sacarUna :: a -> [a] -> [a]
 sacarUna e = recr (\x xs rec -> if e==x then xs else x:rec) []
 ```
 
@@ -25,17 +26,19 @@ Con recr podemos directamente retornar la cola de la lista y dejar de procesar e
 
 ```haskell
 --versión naive
+insertarOrdenado :: Ord a => a -> [a] -> [a]
 insertarOrdenado e []       = [e]
 insertarOrdenado e (x:xs)   =   if e <= x 
                                     then e:x:xs 
-                                else x:(insertarOrdenado e xs)
+                                else x:insertarOrdenado e xs
 ```
 
 ```haskell
 --versión recr
+insertarOrdenado :: Ord a => a -> [a] -> [a]
 insertarOrdenado e = recr (\x xs rec -> if e <= x 
                                             then e:x:xs
-                                        else x:(rec e xs)) []
+                                        else x:rec) [e]
 ```
 
 ---
