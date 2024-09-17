@@ -21,7 +21,7 @@ uncurry f (x,y) = f x y
 Demostrar las siguientes igualdades usando los principios de $extensionalidad$ cuando sea necesario:
 
 ---
-$\textcolor{purple}{i}.\ ∀\ p::(a,b)\ .\ intercambiar(intercambiar\ p) = p$
+$\textcolor{pink}{i.\ ∀\ p::(a,b)\ .\ intercambiar(intercambiar\ p) = p}$
 ---
 
 Como p es de tipo (a, b) entonces tiene la forma (x, y) para un x::a, y::b
@@ -53,7 +53,7 @@ Y de nuevo aplicando la definición de intercambiar,
 
 ---
 
-$\textcolor{purple}{ii.\ } ∀\ p::(a,(b,c))\ .\ asociarD (asociarI\ p) = p$
+$\textcolor{pink}{ii.\  ∀\ p::(a,(b,c))\ .\ asociarD (asociarI\ p) = p}$
 ---
 
 De nuevo por el $\textcolor{aqua}{Principio\ de\ extensionalidad\ para\ pares:}$
@@ -85,7 +85,7 @@ Lo cual es cierto para cualquier p.
 
 ---
 
-$\textcolor{purple}{iii.} ∀\ p::Either\ a\ b\ .\ espejar\ (espejar\ p) = p$
+$\textcolor{pink}{iii. ∀\ p::Either\ a\ b\ .\ espejar\ (espejar\ p) = p}$
 ---
 
 Por el Principio de $\textcolor{aqua}{\underline{Extensionalidad\ para\ sumas:}\\
@@ -127,7 +127,7 @@ $∀\ p::Either\ a\ b\ .\ Right\ x' = Right\ x'$
 
 ---
 
-$\textcolor{purple}{iv.}\ ∀ f::a\rightarrow b\rightarrow c\ .\ ∀\ x::a\ .\ ∀\ y::b\ .\ flip\ (flip\ f)\ x\ y = f\ x\ y$
+$\textcolor{pink}{iv.\ ∀ f::a\rightarrow b\rightarrow c\ .\ ∀\ x::a\ .\ ∀\ y::b\ .\ flip\ (flip\ f)\ x\ y = f\ x\ y}$
 
 Por el $\textcolor{aqua}{Principio\ de\ \underline{extensionalidad\ funcional}: Si\ \ (∀x\ ::\ a.\ \ f\ x = g\ x)\ entonces\ f = g.}$
 
@@ -157,7 +157,7 @@ Por lo que se cumple la igualdad.
 ---
 
 
-$\textcolor{purple}{v.} ∀ f::a\rightarrow b\rightarrow c .\ ∀ x::a .\ ∀ y::b .\ curry\ (uncurry\ f)\ x\ y = f\ x\ y$
+$\textcolor{pink}{v. ∀ f::a\rightarrow b\rightarrow c .\ ∀ x::a .\ ∀ y::b .\ curry\ (uncurry\ f)\ x\ y = f\ x\ y}$
 ---
 
 Por el $\textcolor{aqua}{Principio\ de\ \underline{extensionalidad\ funcional}: Si\ \ (∀x\ ::\ a.\ \ f\ x = g\ x)\ entonces\ f = g.}$
