@@ -1,7 +1,7 @@
 Indicar si las siguientes propiedades son verdaderas o falsas. Si son verdaderas, realizar una demostración. Si
 son falsas, presentar un contraejemplo.
 
-$i.\ Eq\ a \Rightarrow ∀ xs::[a] .\ ∀ e::a .\ ∀ p::a \rightarrow Bool .\ elem\ e\ xs\ \&\&\ p\ e = elem\ e\ (filter\ p\ xs)$
+$i.\ Eq\ a \Rightarrow ∀ xs::[a] .\ \forall e::a .\ \forall p::a \rightarrow Bool .\ elem\ e\ xs\ \land p\ e = elem\ e\ (filter\ p\ xs)$
 ---
 
 Esta propiedad es verdadera, la podemos demostrar usando inducción estructural sobre la lista $xs$.
