@@ -1,7 +1,3 @@
-```hs
-intersect :: Eq a => [a] -> [a] -> [a]
-{I0} intersect xs ys = filter (\e -> elem e ys) xs
-```
 Indicar si las siguientes propiedades son verdaderas o falsas. Si son verdaderas, realizar una demostración. Si
 son falsas, presentar un contraejemplo.
 
@@ -245,3 +241,248 @@ Probamos la propiedad para todos los casos y por lo tanto vale para toda lista $
 
 ---
 
+### $\textcolor{pink}{iv.\ Eq\ a \Rightarrow ∀ xs::[a] .\ ∀ ys::[a] .\ ∀ e::a .\ elem\ e\ (intersect\ xs\ ys) = (elem\ e\ xs)\ \&\&\ (elem\ e\ ys)}$
+
+Lo pruebo por inducción estructural sobre $xs$.
+
+$P(xs): elem\ e\ (intersect\ xs\ ys) = (elem\ e\ xs)\ \&\&\ (elem\ e\ ys)$
+
+- Caso base $xs = []$:
+
+$elem\ e\ (intersect\ []\ ys) = (elem\ e\ [])\ \&\&\ (elem\ e\ ys)$
+
+Por la definición de `intersect` y `elem`:
+
+```hs
+intersect :: Eq a => [a] -> [a] -> [a]
+{I0} intersect xs ys = filter (\e -> elem e ys) xs
+```
+
+$elem\ e\ (filter\ (\backslash e \rightarrow elem\ e\ ys)\ []) = False\ \&\&\ (elem\ e\ ys)$
+
+Por la definición de `filter`:
+
+$elem\ e\ [] = False\ \&\&\ (elem\ e\ ys)$
+
+$False = False\ \&\&\ (elem\ e\ ys)$
+
+$False = False$
+
+- Caso inductivo $xs = x:xs$:
+
+Asumimos verdadera $P(xs)$
+
+$elem\ e\ (intersect\ (x:xs)\ ys) = (elem\ e\ (x:xs))\ \&\&\ (elem\ e\ ys)$
+
+Por la definición de `intersect` y `elem`:
+
+$elem\ e\ (filter\ (\backslash e \rightarrow elem\ e\ ys)\ (x:xs)) = (e\ = x\ ||\ elem\ e\ xs)\ \&\&\ (elem\ e\ ys)$
+
+Por la definición de `filter`:
+
+$elem\ e\ (if\ elem\ x\ ys\ then\ x:(filter\ (\backslash e \rightarrow elem\ e\ ys)\ xs)\ else\ filter\ (\backslash e \rightarrow elem\ e\ ys)\ xs) = (e\ = x\ ||\ elem\ e\ xs)\ \&\&\ (elem\ e\ ys)$
+
+Por la definición de `intersect`:
+
+$elem\ e\ (if\ elem\ x\ ys\ then\ x:(intersect\ xs\ ys)\ else\ intersect\ xs\ ys) = (e\ = x\ ||\ elem\ e\ xs)\ \&\&\ (elem\ e\ ys)$
+
+Por extensión de booleanos, la condición del `if` puede ser $True$ o $False$.
+
+$\textcolor{lime}{e = x}$
+
+$elem\ e\ (x:(intersect\ xs\ ys)) = (True\ ||\ elem\ e\ xs)\ \&\&\ (elem\ e\ ys)$
+
+$e=x \ ||\ elem\ e\ (intersect\ xs\ ys) = elem\ e\ xs\ \&\&\ elem\ e\ ys$
+
+$True\ ||\ elem\ e\ (intersect\ xs\ ys) =  elem\ e\ xs\ \&\&\ elem\ e\ ys$
+
+$elem\ e\ (intersect\ xs\ ys) =  elem\ e\ xs\ \&\&\ elem\ e\ ys$
+
+Y esto vale por hipótesis inductiva por lo tanto vale la propiedad en este caso.
+
+$\textcolor{lime}{e \neq x}$
+
+$elem\ e\ (intersect\ xs\ ys) = (e=x\ ||\ elem\ e\ xs\ )\&\&\ elem\ e\ ys$
+
+$elem\ e\ (intersect\ xs\ ys) = (False ||\ elem\ e\ xs\ )\&\&\ elem\ e\ ys$
+
+$elem\ e\ (intersect\ xs\ ys) = elem\ e\ xs\ \&\&\ elem\ e\ ys$
+
+Y esto también vale por hipótesis inductiva por lo tanto vale la propiedad para los dos casos por lo tanto vale para toda lista $xs$.
+
+---
+
+### $\textcolor{pink}{v.\ Eq\ a \Rightarrow ∀ xs::[a] .\ ∀ ys::[a] .\ length (union\ xs\ ys) = length\ xs\ +\ length\ ys}$
+
+Lo pruebo por inducción estructural sobre $xs$.
+
+$P(xs): length\ (union\ xs\ ys) = length\ xs\ +\ length\ ys$
+
+- Caso base $xs = []$:
+
+$length\ (union\ []\ ys) = length\ []\ +\ length\ ys$
+
+Por la definición de `union` y `length`:
+
+$length\ (nub ([]++ys)) = 0\ +\ length\ ys$
+
+Por la definición de `nub`:
+
+$length\ (nub\ ys) = length\ ys$
+
+Lo pruebo por inducción estructural sobre $ys$.
+
+$P(ys): length\ (nub\ ys) = length\ ys$
+
+- Caso base $ys = []$:
+
+$length\ (nub\ []) = length\ []$
+
+Por la definición de `nub`:
+
+$length\ [] = length\ []$
+
+- Caso inductivo $ys = y:ys$:
+
+Asumimos verdadera $P(ys)$
+
+$length\ (nub\ (y:ys)) = length\ (y:ys)$
+
+Por la definición de `nub` y `length`:
+
+```hs
+nub :: Eq a => [a] -> [a]
+{N0} nub [] = []
+{N1} nub (x:xs) = x : filter (\y -> x /= y) (nub xs)
+```
+$length\ (y : filter (\backslash y \rightarrow x \neq y) (nub\ ys)) = length\ (y:ys)$
+
+$1 + length\ (filter (\backslash y \rightarrow x \neq y) (nub\ ys)) = 1 + length\ ys$
+
+$1 + length\ (nub\ ys)=1 + \ length\ ys $
+
+$length\ (nub\ ys)= length\ ys $
+
+Y esto vale por hipótesis inductiva.
+
+Por lo tanto probamos el caso base.
+
+- Caso inductivo $xs = x:xs$:
+
+Asumimos verdadera $P(xs)$
+
+$length\ (union\ (x:xs)\ ys) = length\ (x:xs)\ +\ length\ ys$
+
+Por la definición de `union` y `length`:
+
+$length\ (nub ((x:xs)++ys)) = 1 + length\ xs\ +\ length\ ys$
+
+Por la definición de `nub`:
+
+$length\  x : filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys)) = 1 + length\ xs\ +\ length\ ys$
+
+$ 1 + length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) = 1 + length\ xs\ +\ length\ ys$
+
+$ length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) = length\ xs\ +\ length\ ys$
+
+$ length\  (nub\ (xs++ys)) = length\ xs\ +\ length\ ys$
+
+Por la definición de `union`:
+
+```hs
+union :: Eq a => [a] -> [a] -> [a]
+{U0} union xs ys = nub (xs++ys)
+```
+
+$ length\  (union\ xs\ ys)) = length\ xs\ +\ length\ ys$
+
+Y esto vale por hipótesis inductiva.
+
+---
+
+### $\textcolor{pink}{vi.\ Eq\ a \Rightarrow ∀ xs::[a] .\ ∀ ys::[a] .\ length (union\ xs\ ys) \leq length\ xs + length\ ys} $
+
+Lo pruebo por inducción estructural sobre $xs$.
+
+$P(xs): length\ (union\ xs\ ys) \leq length\ xs + length\ ys$
+
+- Caso base $xs = []$:
+
+$length\ (union\ []\ ys) \leq length\ [] + length\ ys$
+
+Por la definición de `union` y `length`:
+
+$length\ (nub ([]++ys)) \leq 0 + length\ ys$
+
+Por la definición de `nub`:
+
+$length\ (nub\ ys) \leq length\ ys$
+
+Lo pruebo por inducción estructural sobre $ys$.
+
+$P(ys): length\ (nub\ ys) \leq length\ ys$
+
+- Caso base $ys = []$:
+
+$length\ (nub\ []) \leq length\ []$
+
+Por la definición de `nub`:
+
+$length\ [] \leq length\ []$
+
+- Caso inductivo $ys = y:ys$:
+
+Asumimos verdadera $P(ys)$
+
+$length\ (nub\ (y:ys)) \leq length\ (y:ys)$
+
+Por la definición de `nub` y `length`:
+
+```hs
+nub :: Eq a => [a] -> [a]
+{N0} nub [] = []
+{N1} nub (x:xs) = x : filter (\y -> x /= y) (nub xs)
+```
+
+$length\ (y : filter (\backslash y \rightarrow x \neq y) (nub\ ys)) \leq 1 + length\ ys$
+
+$1 + length\ (filter (\backslash y \rightarrow x \neq y) (nub\ ys)) \leq 1 + length\ ys$
+
+$1 + length\ (nub\ ys) \leq 1 + length\ ys$
+
+$length\ (nub\ ys) \leq length\ ys$
+
+Y esto vale por hipótesis inductiva.
+
+Por lo tanto probamos el caso base.
+
+- Caso inductivo $xs = x:xs$:
+
+Asumimos verdadera $P(xs)$
+
+$length\ (union\ (x:xs)\ ys) \leq length\ (x:xs) + length\ ys$
+
+Por la definición de `union` y `length`:
+
+$length\ (nub ((x:xs)++ys)) \leq 1 + length\ xs + length\ ys$
+
+Por la definición de `nub`:
+
+$length\  x : filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys)) \leq 1 + length\ xs + length\ ys$
+
+$1 + length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) \leq 1 + length\ xs + length\ ys$
+
+$ length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) \leq length\ xs + length\ ys$
+
+$ length\  (nub\ (xs++ys)) \leq length\ xs + length\ ys$
+
+Por la definición de `union`:
+
+```hs
+union :: Eq a => [a] -> [a] -> [a]
+{U0} union xs ys = nub (xs++ys)
+```
+
+$ length\  (union\ xs\ ys)) \leq length\ xs + length\ ys$
+
+Y esto vale por hipótesis inductiva.
