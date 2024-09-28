@@ -47,27 +47,27 @@ $foldAB\ (\backslash r\ rec_i\ rec_d \rightarrow 1 + max\ rec_i\ rec_d)\ 0\ (Bin
 
 Por la definición de $foldAB$:
 
-$ 1 + max(foldAB\ (\backslash r\ rec_i\ rec_d \rightarrow 1 + max\ rec_i\ rec_d)\ 0\ i, foldAB\ (\backslash r\ rec_i\ rec_d \rightarrow 1 + max\ rec_i\ rec_d)\ 0\ d)  \leq foldAB\ (\backslash r\ rec_i\ rec_d\ \rightarrow 1 + rec_i + rec_d)\ 0\ (Bin\ i\ r\ d)$
+$1 + max(foldAB\ (\backslash r\ rec_i\ rec_d \rightarrow 1 + max\ rec_i\ rec_d)\ 0\ i, foldAB\ (\backslash r\ rec_i\ rec_d \rightarrow 1 + max\ rec_i\ rec_d)\ 0\ d)  \leq foldAB\ (\backslash r\ rec_i\ rec_d\ \rightarrow 1 + rec_i + rec_d)\ 0\ (Bin\ i\ r\ d)$
 
-$ 1 + max(altura\ i, altura\ d)  \leq foldAB\ (\backslash r\ rec_i\ rec_d\ \rightarrow 1 + rec_i + rec_d)\ 0\ (Bin\ i\ r\ d)$
+$1 + max(altura\ i, altura\ d)  \leq foldAB\ (\backslash r\ rec_i\ rec_d\ \rightarrow 1 + rec_i + rec_d)\ 0\ (Bin\ i\ r\ d)$
 
-$ 1 + max(altura\ i, altura\ d)  \leq 1 + foldAB\ (\backslash r\ rec_i\ rec_d\ \rightarrow 1 + rec_i + rec_d)\ 0\ i\ + foldAB\ (\backslash r\ rec_i\ rec_d\ \rightarrow 1 + rec_i + rec_d)\ 0\ d$
+$1 + max(altura\ i, altura\ d)  \leq 1 + foldAB\ (\backslash r\ rec_i\ rec_d\ \rightarrow 1 + rec_i + rec_d)\ 0\ i\ + foldAB\ (\backslash r\ rec_i\ rec_d\ \rightarrow 1 + rec_i + rec_d)\ 0\ d$
 
-$ 1 + max(altura\ i, altura\ d)  \leq 1 + cantNodos\ i + cantNodos\ d$
+$1 + max(altura\ i, altura\ d)  \leq 1 + cantNodos\ i + cantNodos\ d$
 
-$ max(altura\ i, altura\ d)  \leq cantNodos\ i + cantNodos\ d$
+$max(altura\ i, altura\ d)  \leq cantNodos\ i + cantNodos\ d$
 
 Por extencionalidad de booleanos para max tenemos dos casos posibles:
 
 $\textcolor{lime}{max(altura\ i, altura\ d) = altura\ d}$
 
-$ altura\ d  \leq cantNodos\ i + cantNodos\ d$
+$altura\ d  \leq cantNodos\ i + cantNodos\ d$
 
 En este caso sabemos por HI que $altura\ d \leq cantNodos\ d$ y por lo tanto $altura\ d \leq cantNodos\ i + cantNodos\ d$ porque $cantNodos\ i \geq 0$
 
 $\textcolor{lime}{max(altura\ i, altura\ d) = altura\ i}$
 
-$ altura\ i  \leq cantNodos\ i + cantNodos\ d$
+$altura\ i  \leq cantNodos\ i + cantNodos\ d$
 
 En este caso sabemos por HI que $altura\ i \leq cantNodos\ i$ y por lo tanto $altura\ i \leq cantNodos\ i + cantNodos\ d$ porque $cantNodos\ d \geq 0$
 
