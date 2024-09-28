@@ -486,6 +486,6 @@ union :: Eq a => [a] -> [a] -> [a]
 {U0} union xs ys = nub (xs++ys)
 ```
 
-$ length\  (union\ xs\ ys)) \leq length\ xs + length\ ys$
+$length\  (union\ xs\ ys)) \leq length\ xs + length\ ys$
 
 Y esto vale por hipótesis inductiva.
