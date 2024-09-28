@@ -381,7 +381,9 @@ Por la definición de `nub`:
 
 $length\  x : filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys)) = 1 + length\ xs\ +\ length\ ys$
 
-$ 1 + length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) = 1 + length\ xs\ +\ length\ ys$
+```math
+ 1 + length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) = 1 + length\ xs\ + length\ ys$
+```
 
 $ length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) = length\ xs\ +\ length\ ys$
 
