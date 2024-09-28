@@ -475,9 +475,9 @@ $length\  x : filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys)) \leq 1
 
 $1 + length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) \leq 1 + length\ xs + length\ ys$
 
-$ length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) \leq length\ xs + length\ ys$
+$length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) \leq length\ xs + length\ ys$
 
-$ length\  (nub\ (xs++ys)) \leq length\ xs + length\ ys$
+$length\  (nub\ (xs++ys)) \leq length\ xs + length\ ys$
 
 Por la definición de `union`:
 
