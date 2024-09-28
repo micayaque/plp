@@ -382,13 +382,14 @@ Por la definición de `nub`:
 $length\  x : filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys)) = 1 + length\ xs\ +\ length\ ys$
 
 ```math
- 1 + length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) = 1 + length\ xs\ + length\ ys$
+ 1 + length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) = 1 + length\ xs\ + length\ ys
 ```
-
-$ length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) = length\ xs\ +\ length\ ys$
-
-$ length\  (nub\ (xs++ys)) = length\ xs\ +\ length\ ys$
-
+```math
+length\  (filter (\backslash y \rightarrow x \neq y)\ (nub\ (xs++ys))) = length\ xs\ +\ length\ ys
+```
+```math
+length\  (nub\ (xs++ys)) = length\ xs\ +\ length\ ys
+```
 Por la definición de `union`:
 
 ```hs
@@ -396,7 +397,7 @@ union :: Eq a => [a] -> [a] -> [a]
 {U0} union xs ys = nub (xs++ys)
 ```
 
-$ length\  (union\ xs\ ys)) = length\ xs\ +\ length\ ys$
+$ length\  (union\ xs\ ys)) = length\ xs\ + length\ ys$
 
 Y esto vale por hipótesis inductiva.
 
