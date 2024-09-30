@@ -17,7 +17,7 @@ $(\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow (\rho \Rightarrow
 consultar
 
 ```math
-\overline{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
 \sigma), \rho \vdash \rho \Rightarrow \tau} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \overline{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
 \sigma), \rho \vdash \rho} \ \ \  ax
 ```
