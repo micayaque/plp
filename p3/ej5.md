@@ -78,7 +78,25 @@ $\color{pink}{iii.}$ Introducción de la doble negación: $\color{pink}{\rho \Ri
 \frac{}{\vdash \rho \Rightarrow \neg \neg \rho} \ \Rightarrow_i
 ```
 
-iv. Eliminación de la triple negación: ¬¬¬ρ ⇒¬ρ
+$\color{pink}{iv.}$ Eliminación de la triple negación: $\neg \neg \neg \rho \Rightarrow \neg \rho$
+```math
+\frac{}{\neg \neg \neg \rho, \rho, \neg \rho \vdash \rho} ax \ \ \ \frac{}{\neg \neg \neg \rho, \rho, \neg \rho \vdash \neg \rho} ax \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+```
+```math
+\frac{}{\neg \neg \neg \rho, \rho, \neg \rho \vdash \bot} \neg_e \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+```
+```math
+\frac{}{\neg \neg \neg \rho, \rho \vdash \neg \neg \rho} \neg_i \ \ \ \frac{}{\neg \neg \neg \rho, \rho \vdash \neg \neg \neg \rho} ax
+```
+```math
+\frac{}{\neg \neg \neg \rho, \rho \vdash \bot} \neg_e
+```
+```math
+\frac{}{\neg \neg \neg \rho \vdash \neg \rho} \neg_i
+```
+```math
+\frac{}{\vdash \neg \neg \neg \rho \Rightarrow \neg \rho}\Rightarrow_i
+```
 
 v. Contrap osición: (ρ ⇒σ) ⇒(¬σ ⇒¬ρ)
 
