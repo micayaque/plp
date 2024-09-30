@@ -165,7 +165,33 @@ Pruebo $\color{violet}{((\rho \land \sigma) \Rightarrow \tau) \Rightarrow (\rho 
 \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{\vdash \color{cyan}{((\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow (\rho \land \sigma) \Rightarrow \tau)}} \Rightarrow_i
 ```
 
-vi i. de Morgan (I): ¬(ρ ∨σ) ⇔(¬ρ ∧¬σ)
+$\color{pink}{vii.}$ de Morgan (I): $\color{pink}{\neg (\rho \lor \sigma ) \Leftrightarrow (\neg \rho \land \neg \sigma)}$
+
+Pruebo $\color{violet}{\neg (\rho \lor \sigma ) \Rightarrow (\neg \rho \land \neg \sigma)}$ y $\color{cyan}{(\neg \rho \land \neg \sigma) \Rightarrow \neg (\rho \lor \sigma )}$
+
+```math
+ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \frac{}{ \Gamma_1 \vdash \rho} ax  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \frac{}{ \Gamma_2 \vdash \sigma} ax
+```
+```math
+\frac{}{ \Gamma \vdash \neg(\rho \lor \sigma)} ax \ \frac{}{ \Gamma_1 \vdash \rho \lor \sigma} \lor_{i_1} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{ \Gamma_2 \vdash \neg (\rho \lor \sigma)} ax \ \frac{}{ \Gamma_2 \vdash\rho \lor \sigma} \lor{i_2}
+```
+```math
+\color{red}{
+\Gamma_1 = \neg (\rho \lor \sigma ), \rho \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \Gamma_2 = \neg (\rho \lor \sigma ), \sigma}
+```
+```math
+\frac{}{ \neg (\rho \lor \sigma ), \rho \vdash \bot} \neg_e \ \ \frac{}{ \neg (\rho \lor \sigma ), \sigma \vdash \bot} \neg_e
+```
+```math
+\frac{}{ \neg (\rho \lor \sigma ) \vdash \neg \rho}     \neg_i \ \ \frac{}{ \neg (\rho \lor \sigma ) \vdash \neg \sigma} \neg_i
+```
+```math
+\frac{}{ \neg (\rho \lor \sigma ) \vdash \neg \rho \land \neg \sigma} \land_i
+```
+```math
+\frac{}{\vdash \color{violet}{\neg (\rho \lor \sigma ) \Rightarrow (\neg \rho \land \neg \sigma)}} \Rightarrow_i
+```
+
 
 vi i i. de Morgan (I I): ¬(ρ ∧σ) ⇔ (¬ρ ∨¬σ). Para la
 dirección ⇒ es necesario usar principios de razo-
