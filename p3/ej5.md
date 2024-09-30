@@ -16,9 +16,11 @@ $(\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow (\rho \Rightarrow
 ---
 consultar
 
-$\overline{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
-\sigma), \rho \vdash \rho \Rightarrow \tau}$ $\ \ \ \ \ \ \ \ \ \ \ \ \ \ $ $\overline{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
-\sigma), \rho \vdash \rho}$ $\ \ \ $ $ax$
+```math
+\overline{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma), \rho \vdash \rho \Rightarrow \tau} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \overline{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma), \rho \vdash \rho} \ \ \  ax
+```
 
 $\overline{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
 \sigma), \rho \vdash \tau}\ \ \ $ $\Rightarrow_e$
