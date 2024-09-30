@@ -14,49 +14,45 @@ $(\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow (\rho \Rightarrow
 \sigma) \Rightarrow \rho \Rightarrow \tau)$
 
 ---
-consultar
 
 ```math
-\frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
-\sigma), \rho \vdash \rho \Rightarrow \tau} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
-\sigma), \rho \vdash \rho} \ \ \  ax
+ \frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma), \rho \vdash \rho \Rightarrow \sigma \Rightarrow \tau} \ \ \ ax \ \ \ \ \frac{}{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma), \rho \vdash \rho } \ \ \ ax \ \ \ \ \ \ \frac{}{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma), \rho \vdash \rho \Rightarrow \sigma} \ \ \  ax \ \ \ \ \ \ \frac{}{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma), \rho \vdash \rho} \ \ \ ax
 ```
 
 ```math
-\frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma), \rho \vdash \sigma \Rightarrow \tau} \ \ \ \Rightarrow_e \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma), \rho \vdash \sigma} \ \ \  \Rightarrow_e
+```
+
+```math
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
 \sigma), \rho \vdash \tau}\ \ \  \Rightarrow_e
 ```
 
 ```math
-\frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
 \sigma) \vdash \rho \Rightarrow \tau}\ \ \  \Rightarrow_i
 ```
 
 ```math
-\frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau) \vdash (\rho \Rightarrow
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau) \vdash (\rho \Rightarrow
 \sigma) \Rightarrow (\rho \Rightarrow \tau)}\ \ \ \Rightarrow_i
 ```
 
 ```math
-\frac{}{\vdash (\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow ((\rho \Rightarrow
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{\vdash (\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow ((\rho \Rightarrow
 \sigma) \Rightarrow \rho \Rightarrow \tau)}\ \ \ \Rightarrow_i
 ```
 
 
-
 $\color{pink}{ii.}$ Reducción al absurdo: $\color{pink}{(\rho \Rightarrow \bot) \Rightarrow \neg \rho}$
 
-i i i. Intro ducción de la doble negación: ρ ⇒¬¬ρ
-iv. Eliminación de la triple negación: ¬¬¬ρ ⇒¬ρ
-v. Contrap osición: (ρ ⇒σ) ⇒(¬σ ⇒¬ρ)
-vi. Adjunción: ((ρ ∧σ) ⇒τ) ⇔(ρ ⇒σ ⇒τ)
-vi i. de Morgan (I): ¬(ρ ∨σ) ⇔(¬ρ ∧¬σ)
-vi i i. de Morgan (I I): ¬(ρ ∧σ) ⇔ (¬ρ ∨¬σ). Para la
-dirección ⇒ es necesario usar principios de razo-
-namiento clásicos.
-ix. Conmutatividad (∧): (ρ ∧σ) ⇒(σ ∧ρ)
-x. Aso ciatividad (∧): ((ρ ∧σ) ∧τ) ⇔(ρ ∧(σ ∧τ))
-xi. Conmutatividad (∨): (ρ ∨σ) ⇒(σ ∨ρ)
-xi i. Aso ciatividad (∨): ((ρ ∨σ) ∨τ) ⇔(ρ ∨(σ ∨τ))
-¾Encuentra alguna relación entre teoremas de adjunción, aso ciatividad y conmutatividad con algunas de las
-propiedades demostradas en la práctica 2?
+
+
+
+
