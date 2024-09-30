@@ -98,7 +98,25 @@ $\color{pink}{iv.}$ Eliminación de la triple negación: $\neg \neg \neg \rho \R
 \frac{}{\vdash \neg \neg \neg \rho \Rightarrow \neg \rho}\Rightarrow_i
 ```
 
-v. Contrap osición: (ρ ⇒σ) ⇒(¬σ ⇒¬ρ)
+$\color{pink}{v.}$ Contraposición: $\color{pink}{(\rho \Rightarrow \sigma) \Rightarrow (\neg \sigma \Rightarrow \neg \rho)}$
+```math
+\frac{}{(\rho \Rightarrow \sigma), \neg \sigma  , \rho\vdash \rho \Rightarrow \sigma} ax \ \ \frac{}{(\rho \Rightarrow \sigma), \neg \sigma  , \rho\vdash \rho} ax \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+```
+```math
+\frac{}{(\rho \Rightarrow \sigma), \neg \sigma  , \rho\vdash \sigma} \Rightarrow_e \ \ \ \frac{}{(\rho \Rightarrow \sigma), \neg \sigma  , \rho\vdash \neg \sigma} ax 
+```
+```math
+\frac{}{(\rho \Rightarrow \sigma), \neg \sigma  , \rho\vdash \bot} \neg_e
+```
+```math
+\frac{}{(\rho \Rightarrow \sigma), \neg \sigma \vdash \neg \rho} \neg_i
+```
+```math
+\frac{}{(\rho \Rightarrow \sigma) \vdash \neg \sigma \Rightarrow \neg \rho} \Rightarrow_i
+```
+```math
+\frac{}{\vdash (\rho \Rightarrow \sigma) \Rightarrow (\neg \sigma \Rightarrow \neg \rho)} \Rightarrow_i
+```
 
 vi. Adjunción: ((ρ ∧σ) ⇒τ) ⇔(ρ ⇒σ ⇒τ)
 
