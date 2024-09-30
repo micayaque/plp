@@ -118,7 +118,52 @@ $\color{pink}{v.}$ Contraposición: $\color{pink}{(\rho \Rightarrow \sigma) \Rig
 \frac{}{\vdash (\rho \Rightarrow \sigma) \Rightarrow (\neg \sigma \Rightarrow \neg \rho)} \Rightarrow_i
 ```
 
-vi. Adjunción: ((ρ ∧σ) ⇒τ) ⇔(ρ ⇒σ ⇒τ)
+$\color{pink}{vi.}$ Adjunción: $((\rho \land \sigma) \Rightarrow \tau) \Leftrightarrow (\rho \Rightarrow \sigma \Rightarrow \tau)$
+
+Pruebo $\color{violet}{((\rho \land \sigma) \Rightarrow \tau) \Rightarrow (\rho \Rightarrow \sigma \Rightarrow \tau)}$ y $\color{cyan}{((\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow (\rho \land \sigma) \Rightarrow \tau)}$
+
+```math
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \frac{}{ ((\rho \land \sigma) \Rightarrow \tau) , \rho, \sigma \vdash \rho}ax \ \ \ \frac{}{ ((\rho \land \sigma) \Rightarrow \tau) , \rho, \sigma \vdash \sigma} ax
+```
+```math
+\frac{}{ ((\rho \land \sigma) \Rightarrow \tau) , \rho, \sigma \vdash (\rho \land \sigma) \Rightarrow \tau}ax \ \ \ \frac{}{ ((\rho \land \sigma) \Rightarrow \tau) , \rho, \sigma \vdash \rho \land \sigma} \land_i
+```
+```math
+\frac{}{ ((\rho \land \sigma) \Rightarrow \tau) , \rho, \sigma \vdash \tau} \Rightarrow_e
+```
+```math
+\frac{}{ ((\rho \land \sigma) \Rightarrow \tau) , \rho \vdash \sigma \Rightarrow \tau} \Rightarrow_i
+```
+```math
+\frac{}{ ((\rho \land \sigma) \Rightarrow \tau) \vdash \rho (\Rightarrow \sigma \Rightarrow \tau)} \Rightarrow_i
+```
+```math
+\frac{}{\vdash \color{violet}{((\rho \land \sigma) \Rightarrow \tau) \Rightarrow (\rho \Rightarrow \sigma \Rightarrow \tau)}} \Rightarrow_i
+```
+
+
+
+
+
+
+```math
+\ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \frac{}{((\rho \Rightarrow (\sigma \Rightarrow \tau)), (\rho \land \sigma) \vdash \rho \land \sigma} ax
+```
+```math
+\frac{}{ ((\rho \Rightarrow (\sigma \Rightarrow \tau)), (\rho \land \sigma) \vdash \rho \Rightarrow ( \sigma \Rightarrow \tau)}ax \ \ \frac{}{((\rho \Rightarrow (\sigma \Rightarrow \tau)), (\rho \land \sigma) \vdash \rho} \land_{e_1} \ \ \ \ \ \ \ \ \ \ \ \frac{}{ ((\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \land \sigma) \vdash \rho \land \sigma} ax
+```
+```math
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{ ((\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \land \sigma) \vdash \sigma \Rightarrow \tau} \Rightarrow_e \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \frac{}{ ((\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \land \sigma) \vdash \sigma} \land_{e_2}
+```
+```math
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{ ((\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \land \sigma) \vdash \tau} \Rightarrow_e
+```
+```math
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{ ((\rho \Rightarrow \sigma \Rightarrow \tau) \vdash (\rho \land \sigma) \Rightarrow \tau} \Rightarrow_i
+```
+```math
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{\vdash \color{cyan}{((\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow (\rho \land \sigma) \Rightarrow \tau)}} \Rightarrow_i
+```
 
 vi i. de Morgan (I): ¬(ρ ∨σ) ⇔(¬ρ ∧¬σ)
 
