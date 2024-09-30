@@ -22,17 +22,25 @@ consultar
 \sigma), \rho \vdash \rho} \ \ \  ax
 ```
 
-$\overline{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
-\sigma), \rho \vdash \tau}\ \ \ $ $\Rightarrow_e$
+```math
+\frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma), \rho \vdash \tau}\ \ \  \Rightarrow_e
+```
 
-$\overline{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
-\sigma) \vdash \rho \Rightarrow \tau}\ \ \ $ $\Rightarrow_i$
+```math
+\frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma) \vdash \rho \Rightarrow \tau}\ \ \  \Rightarrow_i
+```
 
-$\overline{(\rho \Rightarrow \sigma \Rightarrow \tau) \vdash (\rho \Rightarrow
-\sigma) \Rightarrow (\rho \Rightarrow \tau)}\ \ \ $ $\Rightarrow_i$
+```math
+\frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau) \vdash (\rho \Rightarrow
+\sigma) \Rightarrow (\rho \Rightarrow \tau)}\ \ \ \Rightarrow_i
+```
 
-$\overline{\vdash (\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow ((\rho \Rightarrow
-\sigma) \Rightarrow \rho \Rightarrow \tau)}\ \ \ $ $\Rightarrow_i$
+```math
+\frac{}{\vdash (\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow ((\rho \Rightarrow
+\sigma) \Rightarrow \rho \Rightarrow \tau)}\ \ \ \Rightarrow_i
+```
 
 
 
