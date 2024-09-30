@@ -17,8 +17,8 @@ $(\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow (\rho \Rightarrow
 consultar
 
 $\overline{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
-\sigma), \rho \vdash \rho \Rightarrow \tau}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \overline{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
-\sigma), \rho \vdash \rho} \ \ \ $ $ax$
+\sigma), \rho \vdash \rho \Rightarrow \tau}$ $\ \ \ \ \ \ \ \ \ \ \ \ \ \ $ $\overline{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma), \rho \vdash \rho}$ $\ \ \ $ $ax$
 
 $\overline{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
 \sigma), \rho \vdash \tau}\ \ \ $ $\Rightarrow_e$
@@ -36,3 +36,17 @@ $\overline{\vdash (\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow ((\rho 
 
 $\color{pink}{ii.}$ Reducción al absurdo: $\color{pink}{(\rho \Rightarrow \bot) \Rightarrow \neg \rho}$
 
+i i i. Intro ducción de la doble negación: ρ ⇒¬¬ρ
+iv. Eliminación de la triple negación: ¬¬¬ρ ⇒¬ρ
+v. Contrap osición: (ρ ⇒σ) ⇒(¬σ ⇒¬ρ)
+vi. Adjunción: ((ρ ∧σ) ⇒τ) ⇔(ρ ⇒σ ⇒τ)
+vi i. de Morgan (I): ¬(ρ ∨σ) ⇔(¬ρ ∧¬σ)
+vi i i. de Morgan (I I): ¬(ρ ∧σ) ⇔ (¬ρ ∨¬σ). Para la
+dirección ⇒ es necesario usar principios de razo-
+namiento clásicos.
+ix. Conmutatividad (∧): (ρ ∧σ) ⇒(σ ∧ρ)
+x. Aso ciatividad (∧): ((ρ ∧σ) ∧τ) ⇔(ρ ∧(σ ∧τ))
+xi. Conmutatividad (∨): (ρ ∨σ) ⇒(σ ∨ρ)
+xi i. Aso ciatividad (∨): ((ρ ∨σ) ∨τ) ⇔(ρ ∨(σ ∨τ))
+¾Encuentra alguna relación entre teoremas de adjunción, aso ciatividad y conmutatividad con algunas de las
+propiedades demostradas en la práctica 2?
