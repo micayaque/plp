@@ -18,7 +18,7 @@ consultar
 
 ```math
 \frac{}{(\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
-\sigma), \rho \vdash \rho \Rightarrow \tau} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \overline{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
+\sigma), \rho \vdash \rho \Rightarrow \tau} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{\rho \Rightarrow \sigma \Rightarrow \tau), (\rho \Rightarrow
 \sigma), \rho \vdash \rho} \ \ \  ax
 ```
 
