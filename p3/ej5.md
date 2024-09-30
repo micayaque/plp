@@ -64,19 +64,40 @@ $\color{pink}{ii.}$ Reducción al absurdo: $\color{pink}{(\rho \Rightarrow \bot)
 \frac{}{\vdash (\rho \Rightarrow \bot) \Rightarrow \neg \rho} \Rightarrow_i
 ```
 
-$\color{pink}{iii.}$ Introducción de la doble negación: $\rho \Rightarrow \neg \neg \rho$
+$\color{pink}{iii.}$ Introducción de la doble negación: $\color{pink}{\rho \Rightarrow \neg \neg \rho}$
+```math
+\frac{}{\rho, \neg \rho \vdash \rho} ax \ \ \ \ \ \frac{}{\rho, \neg \rho \vdash \neg \rho} ax
+```
+```math
+\frac{}{\rho, \neg \rho \vdash \bot} \neg_e
+```
+```math
+\frac{}{\rho \vdash \neg \neg \rho} \neg_i
+```
+```math
+\frac{}{\vdash \rho \Rightarrow \neg \neg \rho} \ \Rightarrow_i
+```
 
 iv. Eliminación de la triple negación: ¬¬¬ρ ⇒¬ρ
+
 v. Contrap osición: (ρ ⇒σ) ⇒(¬σ ⇒¬ρ)
+
 vi. Adjunción: ((ρ ∧σ) ⇒τ) ⇔(ρ ⇒σ ⇒τ)
+
 vi i. de Morgan (I): ¬(ρ ∨σ) ⇔(¬ρ ∧¬σ)
+
 vi i i. de Morgan (I I): ¬(ρ ∧σ) ⇔ (¬ρ ∨¬σ). Para la
 dirección ⇒ es necesario usar principios de razo-
 namiento clásicos.
+
 ix. Conmutatividad (∧): (ρ ∧σ) ⇒(σ ∧ρ)
+
 x. Aso ciatividad (∧): ((ρ ∧σ) ∧τ) ⇔(ρ ∧(σ ∧τ))
+
 xi. Conmutatividad (∨): (ρ ∨σ) ⇒(σ ∨ρ)
+
 xi i. Aso ciatividad (∨): ((ρ ∨σ) ∨τ) ⇔(ρ ∨(σ ∨τ))
-¾Encuentra alguna relación entre teoremas de adjunción, aso ciatividad y conmutatividad con algunas de las
+
+¿Encuentra alguna relación entre teoremas de adjunción, aso ciatividad y conmutatividad con algunas de las
 propiedades demostradas en la práctica 2?
 
