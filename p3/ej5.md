@@ -193,18 +193,139 @@ Pruebo $\color{violet}{\neg (\rho \lor \sigma ) \Rightarrow (\neg \rho \land \ne
 ```
 
 
-vi i i. de Morgan (I I): ¬(ρ ∧σ) ⇔ (¬ρ ∨¬σ). Para la
-dirección ⇒ es necesario usar principios de razo-
-namiento clásicos.
 
-ix. Conmutatividad (∧): (ρ ∧σ) ⇒(σ ∧ρ)
 
-x. Aso ciatividad (∧): ((ρ ∧σ) ∧τ) ⇔(ρ ∧(σ ∧τ))
+```math
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{\Gamma, \rho \vdash \neg \rho \land \neg \sigma}ax \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{\Gamma, \sigma \vdash \neg \rho \land \neg \sigma}ax
+```
+```math
+\frac{}{\Gamma, \rho \vdash \rho} ax \ \ \frac{}{\Gamma, \rho \vdash \neg \rho} \land_{e_1} \ \ \ \ \ \ \ \frac{}{\Gamma, \sigma \vdash \sigma} ax \ \ \frac{}{\Gamma, \sigma \vdash \neg \sigma}  \land_{e_2}
+```
+```math
+\frac{}{\Gamma \vdash \rho \lor \sigma } ax \ \  \ \ \ \ \ \ \ \  \  \ \frac{}{\Gamma, \rho \vdash \bot} \neg_e \ \ \ \  \ \ \ \ \ \ \ \  \  \  \frac{}{\Gamma, \sigma \vdash \bot} \neg_e
+```
+```math
+\color{red}{\Gamma = (\neg \rho \land \neg \sigma), (\rho \lor \sigma )}
+```
+```math
+\frac{}{(\neg \rho \land \neg \sigma), (\rho \lor \sigma ) \vdash \bot} \lor_e
+```
+```math
+\frac{}{(\neg \rho \land \neg \sigma) \vdash \neg (\rho \lor \sigma )} \neg_i 
+```
+```math
+\frac{}{\vdash \color{cyan}{(\neg \rho \land \neg \sigma) \Rightarrow \neg (\rho \lor \sigma )}} \Rightarrow_i
 
-xi. Conmutatividad (∨): (ρ ∨σ) ⇒(σ ∨ρ)
+```
 
-xi i. Aso ciatividad (∨): ((ρ ∨σ) ∨τ) ⇔(ρ ∨(σ ∨τ))
 
-¿Encuentra alguna relación entre teoremas de adjunción, aso ciatividad y conmutatividad con algunas de las
-propiedades demostradas en la práctica 2?
+$\color{pink}{viii.}$ de Morgan (II): $\color{pink}{\neg (\rho \land \sigma) \Leftrightarrow (\neg \rho \lor \neg \sigma)}$. 
 
+Para la dirección $\Rightarrow$ es necesario usar principios de razonamiento clásicos.
+
+Pruebo $\color{violet}{\neg (\rho \land \sigma) \Rightarrow (\neg \rho \lor \neg \sigma)}$ y $\color{cyan}{(\neg \rho \lor \neg \sigma) \Rightarrow \neg (\rho \land \sigma)}$
+
+```math
+\ \  \ \  \  \ \ \  \ \ \ \  \ \   \ \ \  \ \ \ \  \ \  \  \ \ \  \ \ \frac{}{\neg (\rho \land \sigma), \neg (\neg \rho \lor \neg \sigma) \vdash \neg (\neg \rho \lor \neg \sigma)}ax  \ \ \frac{}{\neg (\rho \land \sigma), \neg (\neg \rho \lor \neg \sigma) \vdash \neg (\neg \rho \lor \neg \sigma)} ax 
+```
+```math
+\ \  \ \  \  \ \ \  \ \ \ \  \ \   \ \ \  \ \ \ \  \ \  \  \ \ \  \ \ \frac{}{\neg (\rho \land \sigma), \neg (\neg \rho \lor \neg \sigma) \vdash \neg \neg \rho \land \neg \neg \sigma}DM(vii)  \ \ \frac{}{\neg (\rho \land \sigma), \neg (\neg \rho \lor \neg \sigma) \vdash \neg \neg \rho \neg \neg \sigma} DM(vii)
+```
+```math
+\ \  \ \  \  \ \ \  \ \ \ \  \ \  \  \ \ \  \  \ \  \  \ \ \  \ \ \ \  \ \  \  \ \ \  \ \ \ \  \ \  \  \ \ \  \ \ \frac{}{\neg (\rho \land \sigma), \neg (\neg \rho \lor \neg \sigma) \vdash \neg \neg \rho} \land_{e_2} \ \ \frac{}{\neg (\rho \land \sigma), \neg (\neg \rho \lor \neg \sigma) \vdash \neg \neg \sigma} \land_{e_1}
+```
+```math
+\ \  \ \  \  \ \ \  \ \ \ \  \ \  \  \ \ \  \  \ \  \  \ \ \  \ \ \ \  \ \  \  \ \ \  \ \ \ \  \ \  \  \ \ \  \ \ \frac{}{\neg (\rho \land \sigma), \neg (\neg \rho \lor \neg \sigma) \vdash \rho} \neg \neg_e \ \ \frac{}{\neg (\rho \land \sigma), \neg (\neg \rho \lor \neg \sigma) \vdash \sigma} \neg \neg_e
+```
+```math
+\frac{}{\neg (\rho \land \sigma), \neg (\neg \rho \lor \neg \sigma) \vdash \neg(\rho \land \sigma)} ax \ \ \frac{}{\neg (\rho \land \sigma), \neg (\neg \rho \lor \neg \sigma) \vdash \rho \land \sigma} \land_i
+```
+```math
+\frac{}{\neg (\rho \land \sigma), \neg (\neg \rho \lor \neg \sigma) \vdash \bot} \neg_e
+```
+```math
+\frac{}{\neg (\rho \land \sigma) \vdash \neg \rho \lor \neg \sigma} PBC
+```
+```math
+\frac{}{\vdash \color{violet}{\neg (\rho \land \sigma) \Rightarrow (\neg \rho \lor \neg \sigma)}} \Rightarrow_i
+```
+
+
+
+
+
+
+
+
+
+
+```math
+ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \  \ \frac{}{ \Gamma, \neg \rho \vdash \rho \land \sigma} ax \ \ \ \ \ \ \ \  \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{ \Gamma, \neg \sigma \vdash \rho \land \sigma} ax
+```
+```math
+ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{ \Gamma, \neg \rho \vdash \neg \rho} ax \ \ \ \  \ \frac{}{ \Gamma, \neg \rho \vdash \rho} \land_{i_1} \ \ \ \ \ \ \ \  \ \ \frac{}{ \Gamma, \neg \sigma \vdash \neg \sigma} ax \ \ \frac{}{ \Gamma, \neg \sigma \vdash \sigma} \land_{i_2}
+```
+```math
+\frac{}{ \Gamma \vdash \neg \rho \lor \neg \sigma} ax \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \frac{}{ \Gamma, \neg \rho \vdash \bot} \neg_e \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{}{ \Gamma, \neg \sigma \vdash \bot} \neg_e
+```
+```math
+\color{red}{\Gamma = (\neg \rho \lor \neg \sigma), (\rho \land \sigma)}
+```
+```math
+\frac{}{ (\neg \rho \lor \neg \sigma), (\rho \land \sigma) \vdash \bot} \lor_e
+```
+```math
+\frac{}{ (\neg \rho \lor \neg \sigma) \vdash \neg (\rho \land \sigma)} \neg_i
+```
+```math
+\frac{}{\vdash \color{cyan}{(\neg \rho \lor \neg \sigma) \Rightarrow \neg (\rho \land \sigma)}} \Rightarrow_i
+```
+
+$\color{pink}{ix.}$ Conmutatividad (∧): $\color{pink}{(\rho \land \sigma) \Rightarrow (\sigma \land \rho)}$
+
+
+
+```math
+\frac{}{ (\rho \land \sigma) \vdash \rho \land \sigma} ax \ \ \frac{}{ (\rho \land \sigma) \vdash  \rho \land \sigma}ax
+```
+```math
+\frac{}{ (\rho \land \sigma) \vdash \sigma} \land_{e_2} \ \ \frac{}{ (\rho \land \sigma) \vdash  \rho} \land_{e_1}
+```
+```math
+\frac{}{ (\rho \land \sigma) \vdash \sigma \land \rho} \land_i
+```
+```math
+\frac{}{\vdash \color{pink}{(\rho \land \sigma) \Rightarrow (\sigma \land \rho)}} \Rightarrow_i
+```
+
+$\color{pink}{x.}$ Asociatividad (∧): $\color{pink}{((\rho \land \sigma) \land \tau) \Leftrightarrow (\rho \land(\sigma \land \tau))}$
+
+
+
+
+```math
+\frac{}{((\rho \land \sigma) \land \tau) \vdash \rho \land(\sigma \land \tau)}
+
+\ \
+\frac{}{(\rho \land(\sigma \land \tau)) \vdash (\rho \land \sigma) \land \tau}
+
+```
+```math
+\frac{}{\vdash \color{orange}{((\rho \land \sigma) \land \tau) \Rightarrow (\rho \land(\sigma \land \tau))}} 
+\Rightarrow_i
+\ \
+\frac{}{\vdash \color{cyan}{(\rho \land(\sigma \land \tau)) \Rightarrow ((\rho \land \sigma) \land \tau)}}
+\Rightarrow_i
+```
+```math
+\frac{}{\vdash \color{pink}{((\rho \land \sigma) \land \tau) \Rightarrow (\rho \land(\sigma \land \tau)) \land \color{pink}{(\rho \land(\sigma \land \tau)) \Rightarrow ((\rho \land \sigma) \land \tau)}}} \land_i
+```
+```math
+\frac{}{\vdash \color{pink}{((\rho \land \sigma) \land \tau) \Leftrightarrow (\rho \land(\sigma \land \tau))}}
+```
+
+$\color{pink}{xi.}$ Conmutatividad (∨): $\color{pink}{(\rho \lor \sigma) \Rightarrow (\sigma \lor \sigma)}$
+
+$\color{pink}{xii.}$ Asociatividad (∨): $\color{pink}{((\rho \lor \sigma) \lor \tau) \Leftrightarrow (\rho \lor (\sigma \lor \tau))}$
+
+¿Encuentra alguna relación entre teoremas de $adjunción$, $asociatividad$ y $conmutatividad$ con algunas de las propiedades demostradas en la práctica $2$?
