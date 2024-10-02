@@ -444,7 +444,36 @@ $\color{pink}{xii.}$ Asociatividad (∨): $\color{pink}{((\rho \lor \sigma) \lor
 
 
 
-
+```math
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\frac{}{((\rho \lor \sigma) \lor \tau), (\rho \lor \sigma) \vdash \rho \lor \sigma} ax
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\frac{}{((\rho \lor \sigma) \lor \tau), \tau \vdash \tau} ax
+```
+```math
+\frac{}{((\rho \lor \sigma) \lor \tau) \vdash ((\rho \lor \sigma) \lor \tau)} ax
+\ \ \ \ \ \ \ \ \ \
+\frac{}{((\rho \lor \sigma) \lor \tau), (\rho \lor \sigma) \vdash ((\rho \lor \sigma) \lor \tau)} \lor{e_1}
+\ \ \ \ \ \ \ \ \ \
+\frac{}{((\rho \lor \sigma) \lor \tau), \tau \vdash ((\rho \lor \sigma) \lor \tau)} \lor{e_2}
+```
+```math
+\frac{}{((\rho \lor \sigma) \lor \tau) \vdash (\rho \lor (\sigma \lor \tau))} \lor_e
+```
+```math
+\frac{}{\vdash \color{orange}{((\rho \lor \sigma) \lor \tau) \Rightarrow (\rho \lor (\sigma \lor \tau))}} \Rightarrow_i
+```
+```math
+\frac{}{\vdash \color{orange}{((\rho \lor \sigma) \lor \tau) \Rightarrow (\rho \lor (\sigma \lor \tau))}}
+\ \ \ \ \ \ \ \ \ \ 
+\frac{}{\color{cyan}{ (\rho \lor (\sigma \lor \tau)) \Rightarrow ((\rho \lor \sigma) \lor \tau)}}
+```
+```math
+\frac{}{\vdash \color{pink}{((\rho \lor \sigma) \lor \tau) \Rightarrow (\rho \lor (\sigma \lor \tau)) \land (\rho \lor (\sigma \lor \tau)) \Rightarrow ((\rho \lor \sigma) \lor \tau)}}  \land_i
+```
+```math
+\frac{}{\vdash \color{pink}{((\rho \lor \sigma) \lor \tau) \Leftrightarrow (\rho \lor (\sigma \lor \tau))}}
+```
 
 
 ¿Encuentra alguna relación entre teoremas de $adjunción$, $asociatividad$ y $conmutatividad$ con algunas de las propiedades demostradas en la práctica $2$?
