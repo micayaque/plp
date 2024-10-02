@@ -285,6 +285,8 @@ $\color{pink}{ix.}$ Conmutatividad (∧): $\color{pink}{(\rho \land \sigma) \Rig
 
 
 
+
+
 ```math
 \frac{}{ (\rho \land \sigma) \vdash \rho \land \sigma} ax \ \ \frac{}{ (\rho \land \sigma) \vdash  \rho \land \sigma}ax
 ```
@@ -298,22 +300,112 @@ $\color{pink}{ix.}$ Conmutatividad (∧): $\color{pink}{(\rho \land \sigma) \Rig
 \frac{}{\vdash \color{pink}{(\rho \land \sigma) \Rightarrow (\sigma \land \rho)}} \Rightarrow_i
 ```
 
+
+
+
+
 $\color{pink}{x.}$ Asociatividad (∧): $\color{pink}{((\rho \land \sigma) \land \tau) \Leftrightarrow (\rho \land(\sigma \land \tau))}$
 
 
 
 
+
 ```math
-\frac{}{((\rho \land \sigma) \land \tau) \vdash \rho \land(\sigma \land \tau)}
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\frac{}{((\rho \land \sigma) \land \tau) \vdash (\rho \land \sigma)\land \tau} 
+ax 
+```
 
-\ \
-\frac{}{(\rho \land(\sigma \land \tau)) \vdash (\rho \land \sigma) \land \tau}
+```math
+\ \ \ \ \ \ \ \frac{}{((\rho \land \sigma) \land \tau) \vdash (\rho \land \sigma) \land \tau} 
+ax
+\ \ \ \ \ \ \ \ \ \ \ \ \
+\frac{}{((\rho \land \sigma) \land \tau) \vdash \rho \land \sigma} 
+\land_{e_2}
+\ \ 
+\frac{}{((\rho \land \sigma) \land \tau) \vdash (\rho \land \sigma) \land \tau}
+ax
+```
 
+```math
+\ \ \ \ \ \ \ \frac{}{((\rho \land \sigma) \land \tau) \vdash \rho \land \sigma} 
+\land_{e_1}
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\frac{}{((\rho \land \sigma) \land \tau) \vdash \sigma} 
+\land_{e_2}
+\ \ 
+\frac{}{((\rho \land \sigma) \land \tau) \vdash \tau}
+\land_{e_2}
+```
+
+```math
+\frac{}{((\rho \land \sigma) \land \tau) \vdash \rho} 
+\land_{e_1}
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\frac{}{((\rho \land \sigma) \land \tau) \vdash \sigma \land \tau}
+\land_i
+```
+
+```math
+ \frac{}{((\rho \land \sigma) \land \tau) \vdash \rho \land(\sigma \land \tau)}
+\land_i
 ```
 ```math
 \frac{}{\vdash \color{orange}{((\rho \land \sigma) \land \tau) \Rightarrow (\rho \land(\sigma \land \tau))}} 
 \Rightarrow_i
+```
+```math
+\frac{}{\vdash \color{pink}{((\rho \land \sigma) \land \tau) \Rightarrow (\rho \land(\sigma \land \tau)) \land \color{pink}{(\rho \land(\sigma \land \tau)) \Rightarrow ((\rho \land \sigma) \land \tau)}}} \land_i
+```
+```math
+\frac{}{\vdash \color{pink}{((\rho \land \sigma) \land \tau) \Leftrightarrow (\rho \land(\sigma \land \tau))}}
+```
+
+---
+
+
+```math
+\ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+\frac{}{(\rho \land(\sigma \land \tau)) \vdash \rho (\sigma \land \tau)}
+ax
+```
+
+```math
+\frac{}{(\rho \land(\sigma \land \tau)) \vdash \rho \land (\sigma \land \tau)}
+ax
 \ \
+\frac{}{(\rho \land(\sigma \land \tau)) \vdash \sigma \land \tau}
+\land_{e_2}
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+\frac{}{(\rho \land(\sigma \land \tau)) \vdash \rho \land (\sigma \land \tau)}
+ax
+```
+
+```math
+\frac{}{(\rho \land(\sigma \land \tau)) \vdash \rho}
+\land_{e_1}
+\ \
+\frac{}{(\rho \land(\sigma \land \tau)) \vdash \sigma}
+\land_{e_1}
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+\frac{}{(\rho \land(\sigma \land \tau)) \vdash \sigma \land \tau}
+\land_{e_2}
+```
+
+```math
+\frac{}{(\rho \land(\sigma \land \tau)) \vdash \rho \land \sigma}
+\land_i
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+\frac{}{(\rho \land(\sigma \land \tau)) \vdash \tau}
+\land_{e_2}
+```
+
+```math
+ \frac{}{(\rho \land(\sigma \land \tau)) \vdash (\rho \land \sigma) \land \tau}
+\land_i
+```
+```math
 \frac{}{\vdash \color{cyan}{(\rho \land(\sigma \land \tau)) \Rightarrow ((\rho \land \sigma) \land \tau)}}
 \Rightarrow_i
 ```
@@ -323,6 +415,8 @@ $\color{pink}{x.}$ Asociatividad (∧): $\color{pink}{((\rho \land \sigma) \land
 ```math
 \frac{}{\vdash \color{pink}{((\rho \land \sigma) \land \tau) \Leftrightarrow (\rho \land(\sigma \land \tau))}}
 ```
+
+
 
 $\color{pink}{xi.}$ Conmutatividad (∨): $\color{pink}{(\rho \lor \sigma) \Rightarrow (\sigma \lor \sigma)}$
 
