@@ -418,8 +418,33 @@ ax
 
 
 
-$\color{pink}{xi.}$ Conmutatividad (∨): $\color{pink}{(\rho \lor \sigma) \Rightarrow (\sigma \lor \sigma)}$
+$\color{pink}{xi.}$ Conmutatividad (∨): $\color{pink}{(\rho \lor \sigma) \Rightarrow (\sigma \lor \rho)}$
+
+
+```math
+\frac{}{(\rho \lor \sigma) \vdash \rho \lor \sigma} ax \ \ \ \ 
+\frac{}{(\rho \lor \sigma), \rho \vdash \rho}ax \ \ \ \
+\frac{}{(\rho \lor \sigma), \sigma \vdash \sigma} ax
+```
+```math
+\frac{}{(\rho \lor \sigma) \vdash \rho \lor \sigma} ax \ \ \ \ 
+\frac{}{(\rho \lor \sigma), \rho \vdash \sigma \lor \rho} \lor_{i_2} \ \ \ \
+\frac{}{(\rho \lor \sigma), \sigma \vdash \sigma \lor \rho} \lor_{i_1}
+```
+```math
+\frac{}{(\rho \lor \sigma) \vdash \sigma \lor \rho} \lor_e
+```
+```math
+\frac{}{\vdash \color{pink}{(\rho \lor \sigma) \Rightarrow (\sigma \lor \rho)}} \Rightarrow_i
+```
+
+
 
 $\color{pink}{xii.}$ Asociatividad (∨): $\color{pink}{((\rho \lor \sigma) \lor \tau) \Leftrightarrow (\rho \lor (\sigma \lor \tau))}$
+
+
+
+
+
 
 ¿Encuentra alguna relación entre teoremas de $adjunción$, $asociatividad$ y $conmutatividad$ con algunas de las propiedades demostradas en la práctica $2$?
