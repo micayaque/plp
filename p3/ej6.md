@@ -176,39 +176,26 @@ $\color{pink}{vii.}$ Implicación vs. disyunción: $\color{pink}{(\tau \Rightarr
 
 
 ```math
-\frac{}{(\tau \Rightarrow \rho), \neg (\neg \tau \lor \rho), \tau  \vdash  \tau \Rightarrow \rho} {}_{ax}
+\hspace{2cm}
+\frac{}{(\tau \Rightarrow \rho), \tau \vdash \tau \Rightarrow \rho} {}_{ax}
 \ \
-\frac{}{(\tau \Rightarrow \rho), \neg (\neg \tau \lor \rho), \tau  \vdash  \tau}  {}_{ax}
-\hspace{5cm}
+\frac{}{(\tau \Rightarrow \rho), \tau \vdash \tau} {}_{ax}
 ```
 ```math
-\frac{}{(\tau \Rightarrow \rho), \neg (\neg \tau \lor \rho), \tau  \vdash  \rho} \Rightarrow_e
-\hspace{4.5cm}
-```
-```math
-\frac{}{(\tau \Rightarrow \rho), \neg (\neg \tau \lor \rho), \tau  \vdash \neg \tau \lor \rho} \lor{i_2}
+\hspace{4.8cm}
+\frac{}{(\tau \Rightarrow \rho), \tau \vdash \rho} \Rightarrow_e
 \ \
-\frac{}{(\tau \Rightarrow \rho), \neg (\neg \tau \lor \rho), \tau  \vdash \neg (\neg \tau \lor \rho)} {}_{ax}
-\hspace{5.5cm}
+\frac{}{(\tau \Rightarrow \rho), \neg \tau \vdash \neg \tau} {}_{ax}
 ```
 ```math
-\frac{}{(\tau \Rightarrow \rho), \neg (\neg \tau \lor \rho), \tau  \vdash \bot} \neg_e
-\hspace{5.5cm} 
-```
-```math
-\frac{}{(\tau \Rightarrow \rho), \neg (\neg \tau \lor \rho)  \vdash \neg \tau} {}_{PBC}
-\hspace{5.5cm} 
-```                                    
-```math
-\frac{}{(\tau \Rightarrow \rho), \neg (\neg \tau \lor \rho)  \vdash \neg \tau \lor \rho} \lor_{i_1}
+\frac{}{(\tau \Rightarrow \rho) \vdash (\tau \lor \neg \tau)} {}_{LEM}
 \ \
-\frac{}{(\tau \Rightarrow \rho), \neg (\neg \tau \lor \rho)  \vdash \neg (\neg \tau \lor \rho) } {}_{ax}
+\frac{}{(\tau \Rightarrow \rho), \tau \vdash (\neg \tau \lor \rho)} \lor{i_2}
+\ \
+\frac{}{(\tau \Rightarrow \rho), \neg \tau \vdash (\neg \tau \lor \rho)} \lor_{i_e}
 ```
 ```math
-\frac{}{(\tau \Rightarrow \rho), \neg (\neg \tau \lor \rho)  \vdash \bot} \neg_e
-```
-```math
-\frac{}{(\tau \Rightarrow \rho) \vdash (\neg \tau \lor \rho)} {}_{PBC}
+\frac{}{(\tau \Rightarrow \rho) \vdash (\neg \tau \lor \rho)} \lor_e
 ```
 ```math
 \frac{}{\vdash \color{orange}{(\tau \Rightarrow \rho) \Rightarrow (\neg \tau \lor \rho)} } \Rightarrow_i
