@@ -1,6 +1,6 @@
 a) Marcar las ocurrencias del término x como subtérmino en 
 
-$\lambda x: Nat.\ succ((\lambda x: Nat.\ \color{violet}x) \color{violet}x )$.
+$\lambda x: Nat.\ succ((\lambda x: Nat.\ \textcolor{red}{x}) \textcolor{red}x )$.
 
 
 
