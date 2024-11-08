@@ -12,7 +12,7 @@ $\text{S(x : } X_4 \rightarrow \text{Bool}) \vdash \text{S(} \lambda \text{x:} X
 
 Resultado:
 
-$ \{ \text{(x : } Bool \rightarrow \text{Bool}) \vdash \text{S(} \lambda \text{x:} X_1 \rightarrow \text{Bool.x) : S(Nat} \rightarrow X_2) \}_{X_4 := Bool}$
+$\{ \text{(x : } Bool \rightarrow \text{Bool}) \vdash \text{S(} \lambda \text{x:} X_1 \rightarrow \text{Bool.x) : S(Nat} \rightarrow X_2) \}_{X_4 := Bool}$
 
-$ \{ \text{(x : } Bool \rightarrow \text{Bool}) \vdash \text{S(} \lambda \text{x:} X_2 \to X_3 \rightarrow \text{Bool.x) : S(Nat} \rightarrow X_2) \}_{X_1 := X_2 \to X_3}$
+$\{ \text{(x : } Bool \rightarrow \text{Bool}) \vdash \text{S(} \lambda \text{x:} X_2 \to X_3 \rightarrow \text{Bool.x) : S(Nat} \rightarrow X_2) \}_{X_1 := X_2 \to X_3}$
 
