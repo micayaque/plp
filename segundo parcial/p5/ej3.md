@@ -43,4 +43,4 @@ $\text{MGU = } \{X_2 := Bool, X_1 := Nat \to Bool \}$
 = \{ X_4 \to X_5 \doteq X_2 \to Bool  \}_{decompose} = \{ X_4 \doteq X_2, X_5 \doteq Bool  \}_{\color{lime}elim \{ X_5 := Bool \}} = \{ X_4 \doteq X_2 \}_{\color{lime}elim \{ X_4 := X_2 \}} = \{\}
 ```
 
-$\text{MGU = } \{ X_3 := Nat, X_5 := Bool, X_4 := X_2 \}$
+$MGU = \{ X_3 := Nat, X_5 := Bool, X_4 := X_2 \}$
