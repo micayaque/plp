@@ -133,7 +133,49 @@ $\color{red}W(\lambda y.\ succ((\lambda x.\ x)\ y)) \rightsquigarrow x:X_2 \righ
 
 ## $iii. \lambda \text{x. if isZero(x) then x else (if x then x else x)}$
 
+Árbol:
+
+![alt text](./img/image%20copy.png)
+
+$\color{purple}W(z) \rightsquigarrow \{x : X_k\} \vdash x : X_k, \ \ X_k \text{incógnita fresca}$
+
+$W(x) \rightsquigarrow \{x : X_1\} \vdash x : X_1$
+
+$W(x) \rightsquigarrow \{x : X_2\} \vdash x : X_2$
+
+$W(x) \rightsquigarrow \{x : X_3\} \vdash x : X_3$
+
+$W(x) \rightsquigarrow \{x : X_4\} \vdash x : X_4$
+
+$W(x) \rightsquigarrow \{x : X_5\} \vdash x : X_5$
+
+
+$\color{brown}W(iszero(U)) \rightsquigarrow S(\Gamma) \vdash S(iszero(M)) : Bool \text{, donde}$
+* $\color{brown}W(U) = \Gamma \vdash M : \tau$
+* $\color{brown}S = MGU\{\tau =^? Nat\}$
+
+$W(isZero(x)) \rightsquigarrow \{x : Nat\} \vdash isZero(x):Bool$
+
+$S=MGU\{X_1 =^? Nat\}=\{X_1:=Nat\}$
+
+$\color{cyan}W(\text{if U then V else W)} \rightsquigarrow S(\Gamma_1) \cup S(\Gamma_2) \cup S(\Gamma_3) \vdash S(\text{if M then P else Q}) : S(\sigma) \text{, donde}$
+* $\color{cyan}W(U) = \Gamma_1 \vdash M : \rho$
+* $\color{cyan}W(V) = \Gamma_2 \vdash P : \sigma$
+* $\color{cyan}W(W) = \Gamma_3 \vdash Q : \tau$
+* $\color{cyan}S = MGU\{\sigma =^? \tau, \rho =^? Bool\} \cup {\sigma_1 =^? \sigma_2 | x : \sigma_1 \in \Gamma_i, x : \sigma_2 \in \Gamma_j , i, j \in \{1, 2, 3\}}$
+
+$W(\text{if x then x else x}) \rightsquigarrow \{x : Bool\}, \{x : X_5\} \vdash \text{if x then x else x}:X_5$
+
+$S=MGU\{X_4 =^? X_5, X_3 =^? Bool\}=\{X_4:=X_5, X_3:=Bool\}$
+
+$W(\text{if isZero(x) then x else (if x then x else x)}) \rightsquigarrow \{x:Nat\}, \{x:X_5\}, \{x : Bool\} \vdash \text{if isZero(x) then x else (if x then x else x)} :X_5$
+
+$S=MGU\{X_2 =^? Bool, Nat =^? Bool\}={\color{yellow}\text{Falla}}$
+
 ## $iv. \lambda \text{x.} \lambda \text{y . if x then y else succ(zero)}$
+
+
+
 
 ## $v. \lambda \text{ if True then (} \lambda \text{ x. zero)zero else (} \lambda \text{ x.zero) False}$
 
