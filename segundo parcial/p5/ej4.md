@@ -6,7 +6,7 @@ Mostrar qué reglas y sustituciones se aplican en cada paso y justificar por qu�
 
 Árbol:
 
-![alt text](image-1.png)
+![alt text](./img/image-1.png)
 
 $\color{pink}W(zero) \rightsquigarrow \empty \vdash zero:Nat$
 
@@ -71,7 +71,7 @@ $\color{red}\{z:Bool\} \vdash  \lambda z : Bool.\text{if z then zero else succ(z
 
 Árbol:
 
-![alt text](image.png)
+![alt text](./img/image.png)
 
 
 $\color{purple}W(z) \rightsquigarrow \{x : X_k\} \vdash x : X_k, \ \ X_k \text{incógnita fresca}$
