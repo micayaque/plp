@@ -62,9 +62,9 @@ $\lambda z. \text{if z then zero else succ(zero)}$
 
 $W(\lambda z. \text{if z then zero else succ(zero)}) \rightsquigarrow \Gamma' \vdash  \lambda z : Bool.\text{if z then zero else succ(zero)} : Bool \rightarrow Nat$
 
-$ \{z:Bool\} \vdash  \lambda z : Bool.\text{if z then zero else succ(zero)} : Bool \rightarrow Nat$
+$\{z:Bool\} \vdash  \lambda z : Bool.\text{if z then zero else succ(zero)} : Bool \rightarrow Nat$
 
-$ \{z:Bool\} \vdash  \lambda z : Bool.\text{if z then zero else succ(zero)} :  Nat$
+$\{z:Bool\} \vdash  \lambda z : Bool.\text{if z then zero else succ(zero)} :  Nat$
 
 
 $ii. \lambda \text{y. succ((} \lambda \text{ x. x) y)}$
