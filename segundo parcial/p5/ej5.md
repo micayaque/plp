@@ -107,8 +107,31 @@ $S = MGU\{X_6 =^? X_5 \to X_7 \} = \{X_6 := X_5 \to X_7\}$
 > $W(\lambda x.\ x\ (w\ \lambda y.\ w\ y)) \rightsquigarrow  \{x:X_5 \to X_7\}, \{w:X_4\}, \{y:X_1\}, \{w:X_2\} \vdash \lambda x.\ x\ (w\ \lambda y.\ w\ y) : X_5 \to X_7 \to X_7$
 
 
-* λx.λy. xy
-* λx.λy. yx
-* λx.(λx. x)
-* λx.(λy. y)x
-* (λz.λx. x (z (λy. z))) True
+## $\lambda x.\ \lambda y.\ x\ y$
+
+Árbol:
+
+![Árbol de inferencia](./img/image%20copy%204.png)
+
+> $W(x) = x:X_1 \vdash x:X_1$
+
+> $W(y) = y:X_2 \vdash y:X_2$
+
+$W(x\ y) = x:X_1, y:X_2 \vdash x\ y:X_3$
+
+$S = MGU\{X_1 =^? X_2 \to X_3\} = \{X_1 := X_2 \to X_3\}$
+
+> $W(x\ y) = x:X_2 \to X_3, y:X_2 \vdash x\ y:X_3$
+
+> $W(\lambda y.\ x\ y) = x:X_2 \to X_3, y:X_2 \vdash \lambda y:X_2.\ x\ y:X_2 \to X_3$
+
+> $W(\lambda x.\ \lambda y.\ x\ y) = x:X_2 \to X_3, y:X_2 \vdash \lambda x:X_2 \to X_3.\ \lambda y.\ x\ y:X_2 \to X_3 \to X_2 \to X_3$
+
+
+## λx.λy. yx
+
+## λx.(λx. x)
+
+## λx.(λy. y)x
+
+## (λz.λx. x (z (λy. z))) True
