@@ -159,4 +159,6 @@ $S = MGU\{X_1 \to X_1 =^? X_2 \to X_3\} = \{X_1 =^? X_2, X_1 =^? X_3\} = \{X_2 =
 
 > $W(z\ \lambda y.\ z) =z:X_2, z:X_1 \vdash z\ \lambda y.\ z : X_5$ 
 
-$S=MGU\{X_2 =^? X_3 \to X_1 \to X_5, X_2 =^? X_1 \}_{elim}=\{X_1 := X_3 \to X_1 \to X_5\}_{Falla, occurs-check}$
+```math
+S=MGU\{X_2 =^? X_3 \to X_1 \to X_5, X_2 =^? X_1 \}_{elim}=\{X_1 := X_3 \to X_1 \to X_5\}_{Falla, occurs-check}
+```
