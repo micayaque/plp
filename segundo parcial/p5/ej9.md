@@ -103,4 +103,21 @@ $S=MGU\{X_2 =^? Nat + X_1, X_2 =^? Bool\}_{elim} = \{X_2 =^? Nat + Bool\}$
 
 $v.\ \text{case left(z) of left(x)} \rightsquigarrow \text{z [] right(y)} \rightsquigarrow y$
 
+![árbol](./img/image%20copy%2012.png)
+
+>$W(y) = y:X_1 \vdash y : X_1$
+
+>$W(z) = z:X_2 \vdash z:X_2$
+
+$W(left(z))= z:X_3 \vdash left(z)_{X_4}: X_3 + X_4 $
+
+$\tau_x = X_5, \tau_y = X_1, \Gamma_{2'} = z:X_2, \Gamma_{3'} = \empty$
+
+$S=MGU\{X_3 + X_4 =^? X_5 + X_1, X_2 =^? X_1\} \cup \{X_2 =^? X_3\}_{decompose+swap} = \{X_3 =^? X_5,  X_4 =^? X_1,X_2 =^? X_1, X_3 =^? X_2\}_{elim} = \{X_2 =^? X_5,  X_4 =^? X_1, X_2 =^? X_1\}_{elim} = \{X_1 =^? X_5,  X_4 =^? X_1\}_{elim}=\{X_4 =^? X_5\} = \{X_4 := X_5\}$
+
+>$W(left(z))= z:X_3 \vdash left(z)_{X_4}: X_3 + X_5 $
+
+>$z:X_3 \vdash \text{case left(z) of left(x)} \rightsquigarrow \text{z [] right(y)} \rightsquigarrow y : X_1$
+
 $vi.\ \text{case z of left(x)} \rightsquigarrow \text{z [] right(y)} \rightsquigarrow y$
+
