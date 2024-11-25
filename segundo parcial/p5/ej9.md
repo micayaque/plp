@@ -121,3 +121,18 @@ $S=MGU\{X_3 + X_4 =^? X_5 + X_1, X_2 =^? X_1\} \cup \{X_2 =^? X_3\}_{decompose+s
 
 $vi.\ \text{case z of left(x)} \rightsquigarrow \text{z [] right(y)} \rightsquigarrow y$
 
+>$W(z) = z:X_1 \vdash z:X_1$
+
+>$W(z) = z:X_2 \vdash z : X_2$
+
+>$W(y) = y:X_3 \vdash y : X_3$
+
+$\tau_x = X_4, \tau_y = X_3, \Gamma_{2'} = z:X_2, \Gamma_{3'} = \empty$
+
+$S=MGU\{X_1 =^? X_4 + X_3, X_2 =^? X_3\} \cup \{X_1 =^? X_2\} =$
+
+$\{X_1 =^? X_4 + X_3, X_2 =^? X_3, X_1 =^? X_2\}_{elim} =$
+
+$\{X_2 =^? X_4 + X_3, X_2 =^? X_3\}_{elim} =$
+
+$\{X_3 =^? X_4 + X_3\}_{occurs-check} =Falla$
