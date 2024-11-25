@@ -121,6 +121,8 @@ $S=MGU\{X_3 + X_4 =^? X_5 + X_1, X_2 =^? X_1\} \cup \{X_2 =^? X_3\}_{decompose+s
 
 $vi.\ \text{case z of left(x)} \rightsquigarrow \text{z [] right(y)} \rightsquigarrow y$
 
+![árbol](./img/image%20copy%2013.png)
+
 >$W(z) = z:X_1 \vdash z:X_1$
 
 >$W(z) = z:X_2 \vdash z : X_2$
