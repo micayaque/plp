@@ -172,7 +172,9 @@ $W(\text{if True then f zero else f False}) = $
 
 $f:Nat\to X_3, f:Bool \to X_4 \vdash \text{if True then f zero else f False} : X_3$
 
-$S=MGU\{X_3 =^? X_4, Bool ^? Bool\} \cup \{Nat \to X_3 =^? Bool \to X_4\}_{decompose} = \{Nat =^? Bool,  X_3 =^? X_4\}_{occurs-check} = Falla$
+```math
+S=MGU\{X_3 =^? X_4, Bool ^? Bool\} \cup \{Nat \to X_3 =^? Bool \to X_4\}_{decompose} = \{Nat =^? Bool,  X_3 =^? X_4\}_{occurs-check} = Falla
+```
 
 ## $vii. \lambda x. \lambda y . \lambda z. \text{ if z then y else succ(x)}$
 
@@ -208,4 +210,6 @@ $x:Nat \vdash \lambda y:Nat.\ \lambda z:Bool. \text{if z then y else succ(x)}:Na
 
 $W(\lambda x.\ \lambda y.\ \lambda z.\ \text{if z then y else succ(x)}) =$
 
-$\empty \vdash \lambda x:Nat.\ \lambda y:Nat.\ \lambda z:Bool. \text{if z then y else succ(x)}:Nat \to Nat \to Bool \to Nat$
+```math
+\empty \vdash \lambda x:Nat.\ \lambda y:Nat.\ \lambda z:Bool. \text{if z then y else succ(x)}:Nat \to Nat \to Bool \to Nat
+```
