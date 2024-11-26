@@ -7,8 +7,6 @@ En cada paso donde se realice una unificación, mostrar el conjunto de ecuacione
 
 ![Árbol de inferencia](./img/image%20copy%202.png)
 
-$\color{purple}W(z) \rightsquigarrow \{x : X_k\} \vdash x : X_k, \ \ X_k \text{incógnita fresca}$
-
 > $W(z) \rightsquigarrow \{z:X_1\} \vdash z:X_1$
 
 > $W(x) \rightsquigarrow \{x:X_2\} \vdash x:X_2$
@@ -43,8 +41,6 @@ $S=MGU\{X_6 =^? X_4 \to X_7\} = X_6 := X_4 \to X_7$
 
 
 ![Árbol de inferencia](./img/image%20copy%203.png)
-
-$\color{purple}W(z) \rightsquigarrow \{x : X_k\} \vdash x : X_k, \ \ X_k \text{incógnita fresca}$
 
 > $W(y) \rightsquigarrow \{y:X_1\} \vdash y:X_1$
 
