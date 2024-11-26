@@ -31,3 +31,8 @@ $\color{brown}W(iszero(U)) \rightsquigarrow S(\Gamma) \vdash S(iszero(M)) : Bool
 * $\color{brown}W(U) = \Gamma \vdash M : \tau$
 * $\color{brown}S = MGU\{\tau =^? Nat\}$
 
+$W(zero) = \empty \vdash zero : Nat$
+
+$W(false) = \empty \vdash false : Bool$
+
+$W(true) = \empty \vdash true : Bool $
