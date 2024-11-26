@@ -4,33 +4,18 @@ Mostrar qué reglas y sustituciones se aplican en cada paso y justificar por qu�
 
 ## $i. \lambda \text{z. if z then zero else succ(zero)}$
 
-Árbol:
-
 ![alt text](./img/image-1.png)
 
-$\color{pink}W(zero) \rightsquigarrow \empty \vdash zero:Nat$
+$\empty \vdash zero:Nat$
 
-$\color{red}\empty \vdash zero:Nat$
-
-$\color{purple}W(z) \rightsquigarrow \{x : X_k\} \vdash x : X_k, \ \ X_k \text{incógnita fresca}$
-
-$\color{red}z:X_1 \vdash z:X_1$
-
-$\color{lime}W(succ(U)) \rightsquigarrow S(\Gamma) \vdash S(succ(M)) : Nat \text{, donde}$
-* $\color{lime}W(U) = \Gamma \vdash M : \tau$
-* $\color{lime}S = MGU\{\tau =^? Nat\}$
+$z:X_1 \vdash z:X_1$
 
 $S(\empty) \vdash S(succ(zero)):Nat$
 
 $S=MGU\{Nat =^? Nat\} \rightsquigarrow \empty$
 
-$\color{red}\empty \vdash succ(zero):Nat$
+$\empty \vdash succ(zero):Nat$
 
-$\color{cyan}W(\text{if U then V else W)} \rightsquigarrow S(\Gamma_1) \cup S(\Gamma_2) \cup S(\Gamma_3) \vdash S(\text{if M then P else Q}) : S(\sigma) \text{, donde}$
-* $\color{cyan}W(U) = \Gamma_1 \vdash M : \rho$
-* $\color{cyan}W(V) = \Gamma_2 \vdash P : \sigma$
-* $\color{cyan}W(W) = \Gamma_3 \vdash Q : \tau$
-* $\color{cyan}S = MGU\{\sigma =^? \tau, \rho =^? Bool\} \cup {\sigma_1 =^? \sigma_2 | x : \sigma_1 \in \Gamma_i, x : \sigma_2 \in \Gamma_j , i, j \in \{1, 2, 3\}}$
 
 $\text{if z then zero else succ(zero)}$
 
@@ -44,19 +29,8 @@ $S=MGU\{X_1 =^? Bool\}$
 
 $S=\{X_1 := Bool\}$
 
-$\color{red}\{z:Bool\} \vdash \text{if z then zero else succ(zero)} : Nat$
+$\{z:Bool\} \vdash \text{if z then zero else succ(zero)} : Nat$
 
-$\color{orange} W(\lambda x. U) \rightsquigarrow \Gamma' \vdash  \lambda x : \tau'.M : \tau' \rightarrow \rho \text{, donde}$
-
-* $\color{orange}W(U) = \Gamma \vdash M : \rho$
-*   ```math
-    \color{orange}
-    \tau' = \begin{cases} 
-    \alpha & \text{si } x : \alpha \in \Gamma  \\
-    X_k \text{con } X_k \text{variable fresca} & \text{en otro caso}
-    \end{cases}
-    ```
-* $\color{orange}\Gamma' = \Gamma \ominus	\{x\}$
 
 $\lambda z. \text{if z then zero else succ(zero)}$
 
@@ -64,80 +38,34 @@ $W(\lambda z. \text{if z then zero else succ(zero)}) \rightsquigarrow \Gamma' \v
 
 $\{z:Bool\} \vdash  \lambda z : Bool.\text{if z then zero else succ(zero)} : Bool \rightarrow Nat$
 
-$\color{red}\{z:Bool\} \vdash  \lambda z : Bool.\text{if z then zero else succ(zero)} :  Nat$
+$\{z:Bool\} \vdash  \lambda z : Bool.\text{if z then zero else succ(zero)} :  Nat$
 
 
 ## $ii. \lambda \text{y. succ((} \lambda \text{ x. x) y)}$
 
-Árbol:
-
 ![alt text](./img/image.png)
 
+$W(x) \rightsquigarrow \{x : X_1\} \vdash x : X_1$
 
-$\color{purple}W(z) \rightsquigarrow \{x : X_k\} \vdash x : X_k, \ \ X_k \text{incógnita fresca}$
-
-$\color{red}W(x) \rightsquigarrow \{x : X_1\} \vdash x : X_1$
-
-$\color{red}W(y) \rightsquigarrow \{y : X_2\} \vdash y : X_2$
-
-$\color{orange} W(\lambda x. U) \rightsquigarrow \Gamma' \vdash  \lambda x : \tau'.M : \tau' \rightarrow \rho \text{, donde}$
-
-* $\color{orange}W(U) = \Gamma \vdash M : \rho$
-*   ```math
-    \color{orange}
-    \tau' = \begin{cases} 
-    \alpha & \text{si } x : \alpha \in \Gamma  \\
-    X_k \text{con } X_k \text{variable fresca} & \text{en otro caso}
-    \end{cases}
-    ```
-* $\color{orange}\Gamma' = \Gamma \ominus	\{x\}$
+$W(y) \rightsquigarrow \{y : X_2\} \vdash y : X_2$
 
 $W(\lambda x. x) \rightsquigarrow x:X_1 \vdash \lambda x:X_1. x:X_1 \rightarrow X_1$
 
-$\color{red}x:X_1 \vdash \lambda x:X_1. x:X_1$
+$x:X_1 \vdash \lambda x:X_1. x:X_1$
 
+$x:X_2 \rightarrow X_3, y:X_2 \vdash (\lambda x.\ x) \ y : X_3$
 
-$\color{violet}W(U V) \rightsquigarrow S(\Gamma_1) \cup S(\Gamma_2) \vdash S(M N) : S(X_k) \text{, donde}$
+$S=MGU\{X_1 =^? X_2 \rightarrow X_3\}=\{X_1:=X_2 \rightarrow X_3\}$
 
-* $\color{violet}W(U) = \Gamma_1 \vdash M : \tau$
-* $\color{violet}W(V) = \Gamma_2 \vdash N : \rho$
-* $\color{violet}X_k \text{variable fresca}$
-* $\color{violet}S = MGU\{\tau =^? \rho \rightarrow X_k\} \cup \{\sigma_1 =^? \sigma_2\ |\ x : \sigma_1 \in \Gamma_1, x : \sigma_2 \in \Gamma_2\}$
+$W(succ((\lambda x.\ x)\ y)) \rightsquigarrow x:X_2 \rightarrow Nat, y:X_2 \vdash succ((\lambda x.\ x)\ y):Nat$
 
-$\color{red}x:X_2 \rightarrow X_3, y:X_2 \vdash (\lambda x.\ x) \ y : X_3$
+$S=MGU\{X_3 =^? Nat\} = \{X_3:=Nat\}$
 
-$\color{red}S=MGU\{X_1 =^? X_2 \rightarrow X_3\}=\{X_1:=X_2 \rightarrow X_3\}$
-
-$\color{lime}W(succ(U)) \rightsquigarrow S(\Gamma) \vdash S(succ(M)) : Nat \text{, donde}$
-* $\color{lime}W(U) = \Gamma \vdash M : \tau$
-* $\color{lime}S = MGU\{\tau =^? Nat\}$
-
-$\color{red}W(succ((\lambda x.\ x)\ y)) \rightsquigarrow x:X_2 \rightarrow Nat, y:X_2 \vdash succ((\lambda x.\ x)\ y):Nat$
-
-$\color{red}S=MGU\{X_3 =^? Nat\} = \{X_3:=Nat\}$
-
-$\color{orange} W(\lambda x. U) \rightsquigarrow \Gamma' \vdash  \lambda x : \tau'.M : \tau' \rightarrow \rho \text{, donde}$
-
-* $\color{orange}W(U) = \Gamma \vdash M : \rho$
-*   ```math
-    \color{orange}
-    \tau' = \begin{cases} 
-    \alpha & \text{si } x : \alpha \in \Gamma  \\
-    X_k \text{con } X_k \text{variable fresca} & \text{en otro caso}
-    \end{cases}
-    ```
-* $\color{orange}\Gamma' = \Gamma \ominus	\{x\}$
-
-$\color{red}W(\lambda y.\ succ((\lambda x.\ x)\ y)) \rightsquigarrow x:X_2 \rightarrow Nat, y:X_2 \vdash \lambda y:X_2. succ((\lambda x.\ x)\ y):X_2 \rightarrow Nat$
-
+$W(\lambda y.\ succ((\lambda x.\ x)\ y)) \rightsquigarrow x:X_2 \rightarrow Nat, y:X_2 \vdash \lambda y:X_2. succ((\lambda x.\ x)\ y):X_2 \rightarrow Nat$
 
 ## $iii. \lambda \text{x. if isZero(x) then x else (if x then x else x)}$
 
-Árbol:
-
 ![alt text](./img/image%20copy.png)
-
-$\color{purple}W(z) \rightsquigarrow \{x : X_k\} \vdash x : X_k, \ \ X_k \text{incógnita fresca}$
 
 $W(x) \rightsquigarrow \{x : X_1\} \vdash x : X_1$
 
@@ -149,20 +77,9 @@ $W(x) \rightsquigarrow \{x : X_4\} \vdash x : X_4$
 
 $W(x) \rightsquigarrow \{x : X_5\} \vdash x : X_5$
 
-
-$\color{brown}W(iszero(U)) \rightsquigarrow S(\Gamma) \vdash S(iszero(M)) : Bool \text{, donde}$
-* $\color{brown}W(U) = \Gamma \vdash M : \tau$
-* $\color{brown}S = MGU\{\tau =^? Nat\}$
-
 $W(isZero(x)) \rightsquigarrow \{x : Nat\} \vdash isZero(x):Bool$
 
 $S=MGU\{X_1 =^? Nat\}=\{X_1:=Nat\}$
-
-$\color{cyan}W(\text{if U then V else W)} \rightsquigarrow S(\Gamma_1) \cup S(\Gamma_2) \cup S(\Gamma_3) \vdash S(\text{if M then P else Q}) : S(\sigma) \text{, donde}$
-* $\color{cyan}W(U) = \Gamma_1 \vdash M : \rho$
-* $\color{cyan}W(V) = \Gamma_2 \vdash P : \sigma$
-* $\color{cyan}W(W) = \Gamma_3 \vdash Q : \tau$
-* $\color{cyan}S = MGU\{\sigma =^? \tau, \rho =^? Bool\} \cup {\sigma_1 =^? \sigma_2 | x : \sigma_1 \in \Gamma_i, x : \sigma_2 \in \Gamma_j , i, j \in \{1, 2, 3\}}$
 
 $W(\text{if x then x else x}) \rightsquigarrow \{x : Bool\}, \{x : X_5\} \vdash \text{if x then x else x}:X_5$
 
@@ -174,11 +91,121 @@ $S=MGU\{X_2 =^? Bool, Nat =^? Bool\}={\color{yellow}\text{Falla}}$
 
 ## $iv. \lambda \text{x.} \lambda \text{y . if x then y else succ(zero)}$
 
+![alt text](./img/image%20copy%2014.png)
 
+$W(x) = x:X_1 \vdash x:X_1$
 
+$W(y) = y:X_2 \vdash y:X_2$
 
-## $v. \lambda \text{ if True then (} \lambda \text{ x. zero)zero else (} \lambda \text{ x.zero) False}$
+$W(succ(zero)) = \empty \vdash succ(zero):Nat$
+
+$W(\text{if x then y else succ(zero)}) = x:Bool, y:Nat \vdash \text{if x then y else succ(zero)}:Nat$
+
+$S=MGU\{X_1 =^? Bool, X_2 =^? Nat\}=\{X_1:=Bool, X_2:=Nat\}$
+
+$W(\lambda y . \text{if x then y else succ(zero)}) =$ 
+
+$x:Bool \vdash \lambda y:Nat . \text{ if x then y else succ(zero)}:Nat \rightarrow Nat$
+
+$W(\lambda x . \lambda y . \text{if x then y else succ(zero)}) =$
+
+$\empty \vdash \lambda x:Bool . \lambda y:Nat . \text{if x then y else succ(zero)}:Bool \rightarrow Nat \rightarrow Nat$
+
+## $v. \text{ if True then (} \lambda \text{ x. zero)zero else (} \lambda \text{ x.zero) False}$
+
+![alt text](./img/image%20copy%2015.png)
+
+$W(zero) = \empty \vdash zero : Nat$
+
+$W(false) = \empty \vdash false : Bool$
+
+$W(true) = \empty \vdash true : Bool$
+
+$W(\lambda x.\ zero) = \empty \vdash \lambda x : X_1.\ zero : X_1 \rightarrow Nat$
+
+$W(\lambda x.\ zero) = \empty \vdash \lambda x : X_2.\ zero : X_2 \rightarrow Nat$
+
+$W((\lambda x.\ zero )\ zero) = \empty \vdash (\lambda x.\ zero )\ zero : X_3$
+
+$S=MGU\{X_1 \to Nat =^? Nat \to X_3\}=\{X_1:=Nat\} = \{X_1:=Nat, X_3 :=Nat\}$
+
+$W((\lambda x.\ zero )\ zero) = \empty \vdash (\lambda x.\ zero )\ zero : Nat$
+
+$W((\lambda x.\ zero)\ false ) = \empty \vdash (\lambda x.\ zero)\ false : X_4$
+
+$S=MGU\{X_2 \to Nat =^? Bool \to X_4\}=\{X_2:=Bool, X_4 := Nat\}$
+
+$W((\lambda x.\ zero)\ false ) = \empty \vdash (\lambda x.\ zero)\ false : Nat$
+
+$W(\text{if True then (} \lambda \text{ x. zero)zero else (} \lambda \text{ x.zero) False}) =$ 
+
+$\empty \vdash \text{if True then (} \lambda \text{ x. zero)zero else (} \lambda \text{ x.zero) False} : Nat$
+
 
 ## $vi. ( \lambda \text{f. if True then f zero else f False) (} \lambda \text{ x.  zero)}$
 
+![alt text](./img/image%20copy%2016.png)
+
+$W(True)=\empty \vdash True : Bool$
+
+$W(f) = f:X_1 \vdash f:X_1$
+
+$W(zero)=\empty \vdash zero : Nat$
+
+$W(f) = f:X_2 \vdash f:X_2$
+
+$W(False)=\empty \vdash False : Bool$
+
+$W(f\ zero) = f:X_1 \vdash f\ zero : X_3$
+
+$S_1 = MGU\{X_1 =^? Nat \to X_3\}=\{X_1 := Nat \to X_3\}$
+
+$W(f\ zero) = f:Nat \to X_3 \vdash f\ zero : X_3$
+
+$W(f\ False) = f:X_2 \vdash f\ False : X_4$
+
+$S_2 = MGU\{X_2 =^? Bool \to X_4\}=\{X_2 := Bool \to X_4\}$
+
+$W(f\ False) = f:Bool \to X_4 \vdash f\ False : X_4$
+
+$W(\text{if True then f zero else f False}) = $
+
+$f:Nat\to X_3, f:Bool \to X_4 \vdash \text{if True then f zero else f False} : X_3$
+
+$S=MGU\{X_3 =^? X_4, Bool ^? Bool\} \cup \{Nat \to X_3 =^? Bool \to X_4\}_{decompose} = \{Nat =^? Bool,  X_3 =^? X_4\}_{occurs-check} = Falla$
+
 ## $vii. \lambda x. \lambda y . \lambda z. \text{ if z then y else succ(x)}$
+
+![alt text](./img/image%20copy%2017.png)
+
+$W(z) = z:X_1 \vdash z:X_1$
+
+$W(y) = y:X_2 \vdash y:X_2$
+
+$W(x) = x:X_3 \vdash x:X_3$
+
+$W(succ(x)) = x:X_3 \vdash succ(x):Nat$
+
+$S=MGU\{X_3 =^? Nat\} = \{X_3 := Nat\}$
+
+$W(succ(x)) = x:Nat \vdash succ(x):Nat$
+
+$W(\text{if z then y else succ(x)}) = z:X_1, y:X_2, x:Nat \vdash \text{if z then y else succ(x)}:X_2$
+
+$S=MGU\{X_1 =^? Bool, X_2 =^? Nat\}=\{X_1 := Bool, X_2 := Nat\}$
+
+$W(\text{if z then y else succ(x)}) =$
+
+$z:Bool, y:Nat, x:Nat \vdash \text{if z then y else succ(x)}:Nat$
+
+$W(\lambda z. \text{if z then y else succ(x)}) =$
+
+$y:Nat, x:Nat \vdash \lambda z:Bool. \text{if z then y else succ(x)}:Bool \rightarrow Nat$
+
+$W(\lambda y.\ \lambda z.\ \text{if z then y else succ(x)}) =$
+
+$x:Nat \vdash \lambda y:Nat.\ \lambda z:Bool. \text{if z then y else succ(x)}:Nat \to Bool \rightarrow Nat$
+
+$W(\lambda x.\ \lambda y.\ \lambda z.\ \text{if z then y else succ(x)}) =$
+
+$\empty \vdash \lambda x:Nat.\ \lambda y:Nat.\ \lambda z:Bool. \text{if z then y else succ(x)}:Nat \to Nat \to Bool \to Nat$
