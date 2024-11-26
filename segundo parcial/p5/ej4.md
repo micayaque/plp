@@ -6,20 +6,20 @@ Mostrar qu√© reglas y sustituciones se aplican en cada paso y justificar por qu√
 
 ![alt text](./img/image-1.png)
 
-$\empty \vdash zero:Nat$
+$\vdash zero:Nat$
 
 $z:X_1 \vdash z:X_1$
 
-$S(\empty) \vdash S(succ(zero)):Nat$
+$S\vdash S(succ(zero)):Nat$
 
-$S=MGU\{Nat =^? Nat\} \rightsquigarrow \empty$
+$S=MGU\{Nat =^? Nat\} \rightsquigarrow \{\}$
 
-$\empty \vdash succ(zero):Nat$
+$\vdash succ(zero):Nat$
 
 
 $\text{if z then zero else succ(zero)}$
 
-$S(z:X_1) \cup S(\empty) \cup S(\empty) \vdash S(\text{if z then zero else succ(zero) }) : S(Nat) = $
+$S(z:X_1) \cup S() \cup S() \vdash S(\text{if z then zero else succ(zero) }) : S(Nat) = $
 
 $\{z:X_1\} \vdash \text{if z then zero else succ(zero)} : Nat$
 
@@ -97,7 +97,7 @@ $W(x) = x:X_1 \vdash x:X_1$
 
 $W(y) = y:X_2 \vdash y:X_2$
 
-$W(succ(zero)) = \empty \vdash succ(zero):Nat$
+$W(succ(zero)) = \vdash succ(zero):Nat$
 
 $W(\text{if x then y else succ(zero)}) = x:Bool, y:Nat \vdash \text{if x then y else succ(zero)}:Nat$
 
@@ -109,52 +109,52 @@ $x:Bool \vdash \lambda y:Nat . \text{ if x then y else succ(zero)}:Nat \rightarr
 
 $W(\lambda x . \lambda y . \text{if x then y else succ(zero)}) =$
 
-$\empty \vdash \lambda x:Bool . \lambda y:Nat . \text{if x then y else succ(zero)}:Bool \rightarrow Nat \rightarrow Nat$
+$\vdash \lambda x:Bool . \lambda y:Nat . \text{if x then y else succ(zero)}:Bool \rightarrow Nat \rightarrow Nat$
 
 ## $v. \text{ if True then (} \lambda \text{ x. zero)zero else (} \lambda \text{ x.zero) False}$
 
 ![alt text](./img/image%20copy%2015.png)
 
-$W(zero) = \empty \vdash zero : Nat$
+$W(zero) = \vdash zero : Nat$
 
-$W(false) = \empty \vdash false : Bool$
+$W(false) = \vdash false : Bool$
 
-$W(true) = \empty \vdash true : Bool$
+$W(true) = \vdash true : Bool$
 
-$W(\lambda x.\ zero) = \empty \vdash \lambda x : X_1.\ zero : X_1 \rightarrow Nat$
+$W(\lambda x.\ zero) = \vdash \lambda x : X_1.\ zero : X_1 \rightarrow Nat$
 
-$W(\lambda x.\ zero) = \empty \vdash \lambda x : X_2.\ zero : X_2 \rightarrow Nat$
+$W(\lambda x.\ zero) = \vdash \lambda x : X_2.\ zero : X_2 \rightarrow Nat$
 
-$W((\lambda x.\ zero )\ zero) = \empty \vdash (\lambda x.\ zero )\ zero : X_3$
+$W((\lambda x.\ zero )\ zero) = \vdash (\lambda x.\ zero )\ zero : X_3$
 
 $S=MGU\{X_1 \to Nat =^? Nat \to X_3\}=\{X_1:=Nat\} = \{X_1:=Nat, X_3 :=Nat\}$
 
-$W((\lambda x.\ zero )\ zero) = \empty \vdash (\lambda x.\ zero )\ zero : Nat$
+$W((\lambda x.\ zero )\ zero) = \vdash (\lambda x.\ zero )\ zero : Nat$
 
-$W((\lambda x.\ zero)\ false ) = \empty \vdash (\lambda x.\ zero)\ false : X_4$
+$W((\lambda x.\ zero)\ false ) = \vdash (\lambda x.\ zero)\ false : X_4$
 
 $S=MGU\{X_2 \to Nat =^? Bool \to X_4\}=\{X_2:=Bool, X_4 := Nat\}$
 
-$W((\lambda x.\ zero)\ false ) = \empty \vdash (\lambda x.\ zero)\ false : Nat$
+$W((\lambda x.\ zero)\ false ) = \vdash (\lambda x.\ zero)\ false : Nat$
 
 $W(\text{if True then (} \lambda \text{ x. zero)zero else (} \lambda \text{ x.zero) False}) =$ 
 
-$\empty \vdash \text{if True then (} \lambda \text{ x. zero)zero else (} \lambda \text{ x.zero) False} : Nat$
+$\vdash \text{if True then (} \lambda \text{ x. zero)zero else (} \lambda \text{ x.zero) False} : Nat$
 
 
 ## $vi. ( \lambda \text{f. if True then f zero else f False) (} \lambda \text{ x.  zero)}$
 
 ![alt text](./img/image%20copy%2016.png)
 
-$W(True)=\empty \vdash True : Bool$
+$W(True)= \vdash True : Bool$
 
 $W(f) = f:X_1 \vdash f:X_1$
 
-$W(zero)=\empty \vdash zero : Nat$
+$W(zero)= \vdash zero : Nat$
 
 $W(f) = f:X_2 \vdash f:X_2$
 
-$W(False)=\empty \vdash False : Bool$
+$W(False)= \vdash False : Bool$
 
 $W(f\ zero) = f:X_1 \vdash f\ zero : X_3$
 
@@ -211,5 +211,5 @@ $x:Nat \vdash \lambda y:Nat.\ \lambda z:Bool. \text{if z then y else succ(x)}:Na
 $W(\lambda x.\ \lambda y.\ \lambda z.\ \text{if z then y else succ(x)}) =$
 
 ```math
-\empty \vdash \lambda x:Nat.\ \lambda y:Nat.\ \lambda z:Bool. \text{if z then y else succ(x)}:Nat \to Nat \to Bool \to Nat
+\vdash \lambda x:Nat.\ \lambda y:Nat.\ \lambda z:Bool. \text{if z then y else succ(x)}:Nat \to Nat \to Bool \to Nat
 ```
