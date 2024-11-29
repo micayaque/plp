@@ -87,7 +87,7 @@ $S=MGU\{X_4 =^? X_5, X_3 =^? Bool\}=\{X_4:=X_5, X_3:=Bool\}$
 
 $W(\text{if isZero(x) then x else (if x then x else x)}) \rightsquigarrow \{x:Nat\}, \{x:X_5\}, \{x : Bool\} \vdash \text{if isZero(x) then x else (if x then x else x)} :X_5$
 
-$S=MGU\{X_2 =^? Bool, Nat =^? Bool\}={\color{yellow}\text{Falla}}$
+$S=MGU\{X_2 =^? Bool, Nat =^? Bool\}=\text{Falla}$
 
 ## $iv. \lambda \text{x.} \lambda \text{y . if x then y else succ(zero)}$
 
