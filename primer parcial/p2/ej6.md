@@ -107,63 +107,36 @@ Probamos la propiedad para todos los casos y por lo tanto vale para toda lista $
 
 ---
 
-### $\textcolor{pink}{ii.\ Eq\ a \Rightarrow ∀ xs::[a] .\ ∀ e::a .\ elem\ e\ xs = elem\ e\ (nub\ xs)}$
-
-```hs
-nub :: Eq a => [a] -> [a]
-{N0} nub [] = []
-{N1} nub (x:xs) = x : filter (\y -> x /= y) (nub xs)
-```
+### $\color{purple}ii.\ Eq\ a \Rightarrow ∀ xs::[a] .\ ∀ e::a .\ elem\ e\ xs = elem\ e\ (nub\ xs)$
 
 Inducción estructural sobre $xs$.
 
-$P(xs): elem\ e\ xs = elem\ e\ (nub\ xs)$
+$P([]) : elem\ e\ [] =  elem\ e\ (nub\ []) =^{def-nub} elem\ e\ [] \checkmark$
 
-- Caso base $xs = []$:
+$HI = P(xs): \forall xs::[a], \forall e::a.\ elem\ e\ xs = elem\ e\ (nub\ xs) \Rightarrow$
 
-$elem\ e\ [] = elem\ e\ (nub\ [])$
+$P(x:xs): \forall x::a, \forall xs::[a], \forall e::a.\ elem\ e\ (x:xs) = elem\ e\ (nub\ (x:xs))$
 
-Por la definición de $nub$:
+$elem\ e\ (x:xs) = e==x\ ||\ elem\ e\ xs =^1$
 
-$False = elem\ e\ []$
+$elem\ e\ (nub\ (x:xs)) =^{def-nub}  elem\ e\ (x : filter (\backslash y \rightarrow x \neq y) (nub\ xs)) =$
 
-$False = False$
+$e==x\ ||\ elem\ e\ (filter (\backslash y \rightarrow x \neq y) (nub\ xs)) =$
 
-- Caso inductivo $xs = x:xs$:
+$e==x\ ||\ elem\ e\ (nub\ xs) =^2$
 
-Asumimos verdadera $P(xs)$
+$1 = 2$, Por extensionalidad de booleanos:
 
-$elem\ e\ (x:xs) = elem\ e\ (nub\ (x:xs))$
+$\textcolor{purple}{e =x}$
 
-Por la definición de $nub$:
+$True = True \checkmark$
 
-$elem\ e\ (x:xs) = elem\ e\ (x : filter (\backslash y \rightarrow x \neq y) (nub\ xs))$
-
-Por la definición de $elem$:
-
-$(e = x\ ||\ elem\ e\ xs )=(e=x\ ||\ elem\ e\ (filter (\backslash y \rightarrow x \neq y) (nub\ xs)))$
-
-Por extensionalidad de booleanos $e=x$ puede ser $True$ o $False$.
-
-$\textcolor{lime}{e = x}$
-
-$(True ||\ elem\ e\ xs )=(True ||\ elem\ e\ (filter (\backslash y \rightarrow x \neq y) (nub\ xs)))$
-
-$True = True$
-
-$\textcolor{lime}{e \neq x}$
-
-$(False ||\ elem\ e\ xs )=(False ||\ elem\ e\ (filter (\backslash y \rightarrow x \neq y) (nub\ xs)))$
-
-$elem\ e\ xs = elem\ e\ (filter (\backslash y \rightarrow x \neq y) (nub\ xs))$
-
-Por la definición de `nub`:
+$\textcolor{purple}{e \neq x}$
 
 $elem\ e\ xs = elem\ e\ (nub\ xs)$
 
 Y esto vale por `hipótesis inductiva`.
 
-Probamos la propiedad para todos los casos y por lo tanto vale para toda lista $xs$.
 
 ---
 
